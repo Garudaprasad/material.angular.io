@@ -1,7 +1,9 @@
 {
   "app": {
     "title": "NextGrade",
-    "toolbar": {
+    "descr": "A Multi-Functional Tool for Data Management in NextGen",
+    "get-started": "Get started",
+    "navbar": {
       "language": {
         "de": "German (DE)",
         "en": "English (EN)",
@@ -10,12 +12,20 @@
       "placeholder": {
         "search": "Search"
       },
+      "section": {
+        "title": {
+          "home": "Home",
+          "conversions": "Conversions",
+          "de_conversions": "De-Conversions",
+          "Components": "Components",
+          "CDK": "CDK"
+        }
+      },
       "tooltip": {
         "acc-settings": "Account Settings",
-        "dark-mode": "Switch to Dark Mode",
+        "theme": "Select a theme",
         "home": "Go to Home page",
-        "language": "Change Language",
-        "light-mode": "Switch to Light Mode",
+        "language": "Select a Language",
         "search": "Search Apps / Keys"
       }
     },

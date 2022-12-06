@@ -1,12 +1,21 @@
-<header focusOnNavigation class="docs-header-background"
-        [class.is-next-version]="isNextVersion" aria-label="Get started" id="homepage-header">
+<header
+  focusOnNavigation
+  class="docs-header-background"
+  aria-label="Get started"
+  id="homepage-header"
+>
   <div class="docs-header-section">
     <div class="docs-header-headline">
-      <h1 class="mat-h1">Angular Material</h1>
-      <h2> Material Design components for Angular</h2>
+      <h1 class="mat-h1">{{'app.title' | translate}}</h1>
+      <h2>{{"app.descr" | translate}}</h2>
     </div>
     <div class="docs-header-start">
-      <a mat-raised-button class="docs-button" routerLink="/guide/getting-started">Get started</a>
+      <a
+        mat-raised-button
+        class="docs-button"
+        routerLink="/guide/getting-started"
+        >{{"app.get-started" | translate}}</a
+      >
     </div>
   </div>
 </header>
@@ -16,14 +25,16 @@
     <div class="docs-homepage-row-column">
       <h2>High quality</h2>
       <p>
-        Internationalized and accessible components for everyone. Well tested to ensure performance and reliability.
+        Internationalized and accessible components for everyone. Well tested to
+        ensure performance and reliability.
       </p>
       <p>Straightforward APIs with consistent cross platform behaviour.</p>
     </div>
     <div class="docs-homepage-row-column">
       <h2>Versatile</h2>
       <p>
-        Provide tools that help developers build their own custom components with common interaction patterns.
+        Provide tools that help developers build their own custom components
+        with common interaction patterns.
       </p>
       <p>
         Customizable within the bounds of the Material Design specification.
@@ -31,12 +42,77 @@
     </div>
     <div class="docs-homepage-row-column">
       <h2>Frictionless</h2>
+      <p>Built by the Angular team to integrate seamlessly with Angular.</p>
+      <p>Start from scratch or drop into your existing applications.</p>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="docs-homepage-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #lineCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Sprint from Zero to App</h2>
       <p>
-        Built by the Angular team to integrate seamlessly with Angular.
+        Hit the ground running with comprehensive, modern UI components that
+        work across the web, mobile, and desktop.
       </p>
+    </div>
+  </div>
+  <div class="docs-homepage-row docs-homepage-reverse-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #radarCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Fast and Consistent</h2>
       <p>
-        Start from scratch or drop into your existing applications.
+        Finely tuned performance, because every millisecond counts. Fully tested
+        across modern browsers.
       </p>
+    </div>
+  </div>
+  <div class="docs-homepage-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #barCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Versatile</h2>
+      <p>
+        Themeable, for when you need to stay on brand or just have a favorite
+        color. Accessible and internationalized so that all users are welcome.
+      </p>
+    </div>
+  </div>
+  <div class="docs-homepage-row docs-homepage-reverse-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #pieCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Optimized for Angular</h2>
+      <p>Built by the Angular team to integrate seamlessly with Angular.</p>
+    </div>
+  </div>
+  <div class="docs-homepage-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #polarCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Versatile</h2>
+      <p>
+        Themeable, for when you need to stay on brand or just have a favorite
+        color. Accessible and internationalized so that all users are welcome.
+      </p>
+    </div>
+  </div>
+  <div class="docs-homepage-row docs-homepage-reverse-row">
+    <div class="docs-homepage-promo-img">
+      <canvas #donutCanvas class="spread-full"></canvas>
+    </div>
+    <div class="docs-homepage-promo-desc">
+      <h2>Optimized for Angular</h2>
+      <p>Built by the Angular team to integrate seamlessly with Angular.</p>
     </div>
   </div>
 
@@ -52,10 +128,18 @@
       </a>
     </div>
     <app-carousel [aria-label]="'Featured components'">
-      <a *ngFor="let comp of getTopComponents()" carousel-item class="carousel-item docs-featured-components-carousel-item"
-         routerLink="/components/{{comp}}">
+      <a
+        *ngFor="let comp of getTopComponents()"
+        carousel-item
+        class="carousel-item docs-featured-components-carousel-item"
+        routerLink="/components/{{comp}}"
+      >
         <div class="docs-homepage-img-container">
-          <img alt="" src="../../../assets/screenshots/{{comp}}.scene.png" role="presentation">
+          <img
+            alt=""
+            src="../../../assets/screenshots/{{comp}}.scene.png"
+            role="presentation"
+          />
         </div>
         {{(comp[0].toUpperCase() + comp.slice(1)).replace('-', ' ')}}
       </a>
@@ -74,8 +158,12 @@
       </a>
     </div>
     <app-carousel [aria-label]="'Guides'">
-      <a carousel-item class="carousel-item docs-homepage-guides-carousel-item" *ngFor="let guide of guideItems.getAllItems()"
-         routerLink='/guide/{{guide.id}}'>
+      <a
+        carousel-item
+        class="carousel-item docs-homepage-guides-carousel-item"
+        *ngFor="let guide of guideItems.getAllItems()"
+        routerLink="/guide/{{guide.id}}"
+      >
         <mat-card class="docs-homepage-guides-card">
           <mat-card-title>{{guide.name}}</mat-card-title>
           <div class="docs-homepage-guides-card-divider"></div>
@@ -86,7 +174,6 @@
       </a>
     </app-carousel>
   </div>
-
 </main>
 
 <app-support></app-support>

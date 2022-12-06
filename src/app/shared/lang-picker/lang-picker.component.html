@@ -2,9 +2,14 @@
   mat-icon-button
   [mat-menu-trigger-for]="langMenu"
   aria-label="Select a Language"
-  matTooltip="{{ 'app.toolbar.tooltip.search' | translate }}"
+  matTooltip="{{ 'app.navbar.tooltip.language' | translate }}"
 >
-  <mat-icon>language</mat-icon>
+  <mat-icon
+    [matBadge]="currentLang?.name"
+    matBadgeSize="small"
+    matBadgeColor="accent"
+    >language</mat-icon
+  >
 </button>
 
 <mat-menu #langMenu="matMenu" xPosition="before" class="docs-lang-picker-menu">
@@ -21,7 +26,7 @@
         currentLang === lang ? "radio_button_checked" : "radio_button_unchecked"
       }}
     </mat-icon>
-    <span translate>app.toolbar.language.{{ lang.name }}</span>
+    <span translate>app.navbar.language.{{ lang.name }}</span>
     <mat-icon class="lang-icon" [svgIcon]="lang.name"></mat-icon>
   </button>
 </mat-menu>

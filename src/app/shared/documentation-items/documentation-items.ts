@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {EXAMPLE_COMPONENTS} from '@angular/components-examples';
+import { Injectable } from "@angular/core";
+import { EXAMPLE_COMPONENTS } from "@angular/components-examples";
 
 export interface AdditionalApiDoc {
   name: string;
@@ -38,545 +38,625 @@ export interface DocSection {
 }
 
 const exampleNames = Object.keys(EXAMPLE_COMPONENTS);
-const CDK = 'cdk';
-const COMPONENTS = 'components';
+const CDK = "cdk";
+const COMPONENTS = "components";
+const CONVERSIONS = "conversions";
+const DE_CONVERSIONS = "de_conversions";
 export const SECTIONS: { [key: string]: DocSection } = {
+  [CONVERSIONS]: {
+    name: CONVERSIONS,
+    summary: "",
+  },
+  [DE_CONVERSIONS]: {
+    name: DE_CONVERSIONS,
+    summary: "",
+  },
   [COMPONENTS]: {
-    name: 'Components',
-    summary: 'Angular Material offers a wide variety of UI components based on the <a' +
-      ' href="https://material.io/components">Material Design specification</a>'
+    name: "Components",
+    summary:
+      "Angular Material offers a wide variety of UI components based on the <a" +
+      ' href="https://material.io/components">Material Design specification</a>',
   },
   [CDK]: {
-    name: 'CDK',
-    summary: 'The Component Dev Kit (CDK) is a set of behavior primitives for building UI' +
-      ' components.'
+    name: "CDK",
+    summary:
+      "The Component Dev Kit (CDK) is a set of behavior primitives for building UI" +
+      " components.",
   },
 };
-
 
 const DOCS: { [key: string]: DocItem[] } = {
   [COMPONENTS]: [
     {
-      id: 'autocomplete',
-      name: 'Autocomplete',
-      summary: 'Suggests relevant options as the user types.',
+      id: "autocomplete",
+      name: "Autocomplete",
+      summary: "Suggests relevant options as the user types.",
       exampleSpecs: {
-        prefix: 'autocomplete-',
+        prefix: "autocomplete-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-autocomplete-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-autocomplete-testing.html" },
+      ],
     },
     {
-      id: 'badge',
-      name: 'Badge',
-      summary: 'A small value indicator that can be overlaid on another object.',
+      id: "badge",
+      name: "Badge",
+      summary:
+        "A small value indicator that can be overlaid on another object.",
       exampleSpecs: {
-        prefix: 'badge-',
+        prefix: "badge-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-badge-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-badge-testing.html" },
+      ],
     },
     {
-      id: 'bottom-sheet',
-      name: 'Bottom Sheet',
-      summary: 'A large interactive panel primarily for mobile devices.',
+      id: "bottom-sheet",
+      name: "Bottom Sheet",
+      summary: "A large interactive panel primarily for mobile devices.",
       exampleSpecs: {
-        prefix: 'bottom-sheet-',
+        prefix: "bottom-sheet-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-bottom-sheet-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-bottom-sheet-testing.html" },
+      ],
     },
     {
-      id: 'button',
-      name: 'Button',
-      summary: 'An interactive button with a range of presentation options.',
+      id: "button",
+      name: "Button",
+      summary: "An interactive button with a range of presentation options.",
       exampleSpecs: {
-        prefix: 'button-',
-        exclude: ['button-toggle-']
+        prefix: "button-",
+        exclude: ["button-toggle-"],
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-button-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-button-testing.html" },
+      ],
     },
     {
-      id: 'button-toggle',
-      name: 'Button toggle',
-      summary: 'A groupable on/off toggle for enabling and disabling options.',
+      id: "button-toggle",
+      name: "Button toggle",
+      summary: "A groupable on/off toggle for enabling and disabling options.",
       exampleSpecs: {
-        prefix: 'button-toggle-',
+        prefix: "button-toggle-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-button-toggle-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-button-toggle-testing.html" },
+      ],
     },
     {
-      id: 'card',
-      name: 'Card',
-      summary: 'A styled container for pieces of itemized content.',
+      id: "card",
+      name: "Card",
+      summary: "A styled container for pieces of itemized content.",
       exampleSpecs: {
-        prefix: 'card-',
+        prefix: "card-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-card-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-card-testing.html" },
+      ],
     },
     {
-      id: 'checkbox',
-      name: 'Checkbox',
-      summary: 'Captures boolean input with an optional indeterminate mode.',
+      id: "checkbox",
+      name: "Checkbox",
+      summary: "Captures boolean input with an optional indeterminate mode.",
       exampleSpecs: {
-        prefix: 'checkbox-',
+        prefix: "checkbox-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-checkbox-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-checkbox-testing.html" },
+      ],
     },
     {
-      id: 'chips',
-      name: 'Chips',
-      summary: 'Presents a list of items as a set of small, tactile entities.',
+      id: "chips",
+      name: "Chips",
+      summary: "Presents a list of items as a set of small, tactile entities.",
       exampleSpecs: {
-        prefix: 'chips-',
+        prefix: "chips-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-chips-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-chips-testing.html" },
+      ],
     },
     {
-      id: 'core',
-      name: 'Core',
-      summary: 'Reusable parts used by other components in the library.',
+      id: "core",
+      name: "Core",
+      summary: "Reusable parts used by other components in the library.",
       exampleSpecs: {
-        prefix: 'core-',
+        prefix: "core-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-core-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-core-testing.html" },
+      ],
     },
     {
-      id: 'datepicker',
-      name: 'Datepicker',
-      summary: 'Captures dates, agnostic about their internal representation.',
+      id: "datepicker",
+      name: "Datepicker",
+      summary: "Captures dates, agnostic about their internal representation.",
       exampleSpecs: {
-        prefix: 'date',
+        prefix: "date",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-datepicker-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-datepicker-testing.html" },
+      ],
     },
     {
-      id: 'dialog',
-      name: 'Dialog',
-      summary: 'A configurable modal that displays dynamic content.',
+      id: "dialog",
+      name: "Dialog",
+      summary: "A configurable modal that displays dynamic content.",
       exampleSpecs: {
-        prefix: 'dialog-',
+        prefix: "dialog-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-dialog-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-dialog-testing.html" },
+      ],
     },
     {
-      id: 'divider',
-      name: 'Divider',
-      summary: 'A vertical or horizontal visual divider.',
+      id: "divider",
+      name: "Divider",
+      summary: "A vertical or horizontal visual divider.",
       exampleSpecs: {
-        prefix: 'divider-',
+        prefix: "divider-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-divider-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-divider-testing.html" },
+      ],
     },
     {
-      id: 'expansion',
-      name: 'Expansion Panel',
-      summary: 'A container which can be expanded to reveal more content.',
+      id: "expansion",
+      name: "Expansion Panel",
+      summary: "A container which can be expanded to reveal more content.",
       exampleSpecs: {
-        prefix: 'expansion-',
+        prefix: "expansion-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-expansion-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-expansion-testing.html" },
+      ],
     },
     {
-      id: 'form-field',
-      name: 'Form field',
-      summary: 'Wraps input fields so they are displayed consistently.',
+      id: "form-field",
+      name: "Form field",
+      summary: "Wraps input fields so they are displayed consistently.",
       exampleSpecs: {
-        prefix: 'form-field-',
+        prefix: "form-field-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-form-field-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-form-field-testing.html" },
+      ],
     },
     {
-      id: 'grid-list',
-      name: 'Grid list',
-      summary: 'A flexible structure for presenting content items in a grid.',
+      id: "grid-list",
+      name: "Grid list",
+      summary: "A flexible structure for presenting content items in a grid.",
       exampleSpecs: {
-        prefix: 'grid-list-',
+        prefix: "grid-list-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-grid-list-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-grid-list-testing.html" },
+      ],
     },
     {
-      id: 'icon',
-      name: 'Icon',
-      summary: 'Renders a specified icon.',
+      id: "icon",
+      name: "Icon",
+      summary: "Renders a specified icon.",
       exampleSpecs: {
-        prefix: 'icon-',
+        prefix: "icon-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-icon-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-icon-testing.html" },
+      ],
     },
     {
-      id: 'input',
-      name: 'Input',
-      summary: 'Enables native inputs to be used within a Form field.',
+      id: "input",
+      name: "Input",
+      summary: "Enables native inputs to be used within a Form field.",
       exampleSpecs: {
-        prefix: 'input-',
+        prefix: "input-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-input-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-input-testing.html" },
+      ],
     },
     {
-      id: 'list',
-      name: 'List',
-      summary: 'Presents conventional lists of items.',
+      id: "list",
+      name: "List",
+      summary: "Presents conventional lists of items.",
       exampleSpecs: {
-        prefix: 'list-',
+        prefix: "list-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-list-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-list-testing.html" },
+      ],
     },
     {
-      id: 'menu',
-      name: 'Menu',
-      summary: 'A floating panel of nestable options.',
+      id: "menu",
+      name: "Menu",
+      summary: "A floating panel of nestable options.",
       exampleSpecs: {
-        prefix: 'menu-',
+        prefix: "menu-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-menu-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-menu-testing.html" },
+      ],
     },
     {
-      id: 'paginator',
-      name: 'Paginator',
-      summary: 'Controls for displaying paged data.',
+      id: "paginator",
+      name: "Paginator",
+      summary: "Controls for displaying paged data.",
       exampleSpecs: {
-        prefix: 'paginator-',
+        prefix: "paginator-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-paginator-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-paginator-testing.html" },
+      ],
     },
     {
-      id: 'progress-bar',
-      name: 'Progress bar',
-      summary: 'A linear progress indicator.',
+      id: "progress-bar",
+      name: "Progress bar",
+      summary: "A linear progress indicator.",
       exampleSpecs: {
-        prefix: 'progress-bar-',
+        prefix: "progress-bar-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-progress-bar-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-progress-bar-testing.html" },
+      ],
     },
     {
-      id: 'progress-spinner',
-      name: 'Progress spinner',
-      summary: 'A circular progress indicator.',
+      id: "progress-spinner",
+      name: "Progress spinner",
+      summary: "A circular progress indicator.",
       exampleSpecs: {
-        prefix: 'progress-spinner-',
+        prefix: "progress-spinner-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-progress-spinner-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-progress-spinner-testing.html" },
+      ],
     },
     {
-      id: 'radio',
-      name: 'Radio button',
-      summary: 'Allows the user to select one option from a group.',
+      id: "radio",
+      name: "Radio button",
+      summary: "Allows the user to select one option from a group.",
       exampleSpecs: {
-        prefix: 'radio-',
-
+        prefix: "radio-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-radio-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-radio-testing.html" },
+      ],
     },
     {
-      id: 'ripple',
-      name: 'Ripples',
-      overviewPath: 'material/core/ripple/ripple.html',
-      summary: 'Directive for adding Material Design ripple effects',
+      id: "ripple",
+      name: "Ripples",
+      overviewPath: "material/core/ripple/ripple.html",
+      summary: "Directive for adding Material Design ripple effects",
       exampleSpecs: {
-        prefix: 'ripple-',
+        prefix: "ripple-",
       },
     },
     {
-      id: 'select',
-      name: 'Select',
-      summary: 'Allows the user to select one or more options using a dropdown.',
+      id: "select",
+      name: "Select",
+      summary:
+        "Allows the user to select one or more options using a dropdown.",
       exampleSpecs: {
-        prefix: 'select-',
+        prefix: "select-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-select-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-select-testing.html" },
+      ],
     },
     {
-      id: 'sidenav',
-      name: 'Sidenav',
-      summary: 'A container for content that is fixed to one side of the screen.',
+      id: "sidenav",
+      name: "Sidenav",
+      summary:
+        "A container for content that is fixed to one side of the screen.",
       exampleSpecs: {
-        prefix: 'sidenav-',
+        prefix: "sidenav-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-sidenav-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-sidenav-testing.html" },
+      ],
     },
     {
-      id: 'slide-toggle',
-      name: 'Slide toggle',
-      summary: 'Captures boolean values as a clickable and draggable switch.',
+      id: "slide-toggle",
+      name: "Slide toggle",
+      summary: "Captures boolean values as a clickable and draggable switch.",
       exampleSpecs: {
-        prefix: 'slide-toggle-',
+        prefix: "slide-toggle-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-slide-toggle-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-slide-toggle-testing.html" },
+      ],
     },
     {
-      id: 'slider',
-      name: 'Slider',
-      summary: 'Allows the user to input a value by dragging along a slider.',
+      id: "slider",
+      name: "Slider",
+      summary: "Allows the user to input a value by dragging along a slider.",
       exampleSpecs: {
-        prefix: 'slider-',
+        prefix: "slider-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-slider-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-slider-testing.html" },
+      ],
     },
     {
-      id: 'snack-bar',
-      name: 'Snackbar',
-      summary: 'Displays short actionable messages as an uninvasive alert.',
+      id: "snack-bar",
+      name: "Snackbar",
+      summary: "Displays short actionable messages as an uninvasive alert.",
       exampleSpecs: {
-        prefix: 'snack-bar-',
+        prefix: "snack-bar-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-snack-bar-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-snack-bar-testing.html" },
+      ],
     },
     {
-      id: 'sort',
-      name: 'Sort header',
-      summary: 'Allows the user to configure how tabular data is sorted.',
+      id: "sort",
+      name: "Sort header",
+      summary: "Allows the user to configure how tabular data is sorted.",
       exampleSpecs: {
-        prefix: 'sort-',
+        prefix: "sort-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-sort-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-sort-testing.html" },
+      ],
     },
     {
-      id: 'stepper',
-      name: 'Stepper',
-      summary: 'Presents content as steps through which to progress.',
+      id: "stepper",
+      name: "Stepper",
+      summary: "Presents content as steps through which to progress.",
       exampleSpecs: {
-        prefix: 'stepper-',
+        prefix: "stepper-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-stepper-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-stepper-testing.html" },
+      ],
     },
     {
-      id: 'table',
-      name: 'Table',
-      summary: 'A configurable component for displaying tabular data.',
+      id: "table",
+      name: "Table",
+      summary: "A configurable component for displaying tabular data.",
       exampleSpecs: {
-        prefix: 'table-',
+        prefix: "table-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-table-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-table-testing.html" },
+      ],
     },
     {
-      id: 'tabs',
-      name: 'Tabs',
-      summary: 'Only presents one view at a time from a provided set of views.',
+      id: "tabs",
+      name: "Tabs",
+      summary: "Only presents one view at a time from a provided set of views.",
       exampleSpecs: {
-        prefix: 'tab-',
+        prefix: "tab-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-tabs-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-tabs-testing.html" },
+      ],
     },
     {
-      id: 'toolbar',
-      name: 'Toolbar',
-      summary: 'A container for top-level titles and controls.',
+      id: "toolbar",
+      name: "Toolbar",
+      summary: "A container for top-level titles and controls.",
       exampleSpecs: {
-        prefix: 'toolbar-',
+        prefix: "toolbar-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-toolbar-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-toolbar-testing.html" },
+      ],
     },
     {
-      id: 'tooltip',
-      name: 'Tooltip',
-      summary: 'Displays floating content when an object is hovered.',
+      id: "tooltip",
+      name: "Tooltip",
+      summary: "Displays floating content when an object is hovered.",
       exampleSpecs: {
-        prefix: 'tooltip-',
+        prefix: "tooltip-",
       },
-      additionalApiDocs: [{name: 'Testing', path: 'material-tooltip-testing.html'}],
+      additionalApiDocs: [
+        { name: "Testing", path: "material-tooltip-testing.html" },
+      ],
     },
     {
-      id: 'tree',
-      name: 'Tree',
-      summary: 'Presents hierarchical content as an expandable tree.',
+      id: "tree",
+      name: "Tree",
+      summary: "Presents hierarchical content as an expandable tree.",
       exampleSpecs: {
-        prefix: 'tree-',
+        prefix: "tree-",
       },
     },
   ],
   [CDK]: [
     {
-      id: 'a11y',
-      name: 'Accessibility',
-      summary: 'Utilities for screen readers, focus and more.',
+      id: "a11y",
+      name: "Accessibility",
+      summary: "Utilities for screen readers, focus and more.",
       exampleSpecs: {
-        prefix: 'focus-monitor-',
+        prefix: "focus-monitor-",
       },
     },
     {
-      id: 'accordion',
-      name: 'Accordion',
-      summary: 'Component with one or more expandable sections.',
+      id: "accordion",
+      name: "Accordion",
+      summary: "Component with one or more expandable sections.",
       exampleSpecs: {
-        prefix: 'cdk-accordion-',
+        prefix: "cdk-accordion-",
       },
     },
     {
-      id: 'bidi',
-      name: 'Bidirectionality',
-      summary: 'Utilities to respond to changes in LTR/RTL layout direction.',
+      id: "bidi",
+      name: "Bidirectionality",
+      summary: "Utilities to respond to changes in LTR/RTL layout direction.",
       exampleSpecs: {
-        prefix: 'cdk-bidi-',
+        prefix: "cdk-bidi-",
       },
     },
     {
-      id: 'clipboard',
-      name: 'Clipboard',
-      summary: 'Helpers for working with the system clipboard.',
+      id: "clipboard",
+      name: "Clipboard",
+      summary: "Helpers for working with the system clipboard.",
       exampleSpecs: {
-        prefix: 'cdk-clipboard-',
+        prefix: "cdk-clipboard-",
       },
     },
     {
-      id: 'coercion',
-      name: 'Coercion',
-      summary: 'Utility functions for coercing @Input into specific types.',
+      id: "coercion",
+      name: "Coercion",
+      summary: "Utility functions for coercing @Input into specific types.",
       exampleSpecs: {
-        prefix: 'cdk-coercion-',
+        prefix: "cdk-coercion-",
       },
     },
     {
-      id: 'collections',
-      name: 'Collections',
-      summary: 'Utilities for managing collections.',
+      id: "collections",
+      name: "Collections",
+      summary: "Utilities for managing collections.",
       exampleSpecs: {
-        prefix: 'cdk-collections-',
+        prefix: "cdk-collections-",
       },
     },
     {
-      id: 'dialog',
-      name: 'Dialog',
-      summary: 'Directives for building accessible dialogs.',
+      id: "dialog",
+      name: "Dialog",
+      summary: "Directives for building accessible dialogs.",
       exampleSpecs: {
-        prefix: 'cdk-dialog-',
+        prefix: "cdk-dialog-",
       },
     },
     {
-      id: 'drag-drop',
-      name: 'Drag and Drop',
-      summary: 'Directives enabling drag-and-drop interactions',
+      id: "drag-drop",
+      name: "Drag and Drop",
+      summary: "Directives enabling drag-and-drop interactions",
       exampleSpecs: {
-        prefix: 'cdk-drag-drop-',
+        prefix: "cdk-drag-drop-",
       },
     },
     {
-      id: 'layout',
-      name: 'Layout',
-      summary: 'Utilities to respond to changes in viewport size.',
+      id: "layout",
+      name: "Layout",
+      summary: "Utilities to respond to changes in viewport size.",
       exampleSpecs: {
-        prefix: 'cdk-layout-',
+        prefix: "cdk-layout-",
       },
     },
     {
-      id: 'listbox',
-      name: 'Listbox',
-      summary: 'Directives for building accessible listboxes.',
+      id: "listbox",
+      name: "Listbox",
+      summary: "Directives for building accessible listboxes.",
       exampleSpecs: {
-        prefix: 'cdk-listbox-',
+        prefix: "cdk-listbox-",
       },
     },
     {
-      id: 'menu',
-      name: 'Menu',
-      summary: 'Directives for building accessible menus.',
+      id: "menu",
+      name: "Menu",
+      summary: "Directives for building accessible menus.",
       exampleSpecs: {
-        prefix: 'cdk-menu-',
+        prefix: "cdk-menu-",
       },
     },
     {
-      id: 'observers',
-      name: 'Observers',
-      summary: 'Utilities to respond to changes to element properties.',
+      id: "observers",
+      name: "Observers",
+      summary: "Utilities to respond to changes to element properties.",
       exampleSpecs: {
-        prefix: 'cdk-observers-',
+        prefix: "cdk-observers-",
       },
     },
     {
-      id: 'overlay',
-      name: 'Overlay',
-      summary: 'Utilities for dynamically displaying floating content.',
+      id: "overlay",
+      name: "Overlay",
+      summary: "Utilities for dynamically displaying floating content.",
       exampleSpecs: {
-        prefix: 'cdk-overlay-',
+        prefix: "cdk-overlay-",
       },
     },
     {
-      id: 'platform',
-      name: 'Platform',
-      summary: 'Provides information about the user\'s platform.',
+      id: "platform",
+      name: "Platform",
+      summary: "Provides information about the user's platform.",
       exampleSpecs: {
-        prefix: 'cdk-platform-',
+        prefix: "cdk-platform-",
       },
     },
     {
-      id: 'portal',
-      name: 'Portal',
-      summary: 'Utilities for dynamically displaying content into a target.',
+      id: "portal",
+      name: "Portal",
+      summary: "Utilities for dynamically displaying content into a target.",
       exampleSpecs: {
-        prefix: 'cdk-portal-',
+        prefix: "cdk-portal-",
       },
     },
     {
-      id: 'scrolling',
-      name: 'Scrolling',
-      summary: 'Directives for managing scroll events.',
+      id: "scrolling",
+      name: "Scrolling",
+      summary: "Directives for managing scroll events.",
       exampleSpecs: {
-        prefix: 'cdk-virtual-scroll-',
+        prefix: "cdk-virtual-scroll-",
       },
     },
     {
-      id: 'stepper',
-      name: 'Stepper',
-      summary: 'Presents content as steps through which to progress.',
+      id: "stepper",
+      name: "Stepper",
+      summary: "Presents content as steps through which to progress.",
       exampleSpecs: {
-        prefix: 'cdk-custom-stepper-',
+        prefix: "cdk-custom-stepper-",
       },
     },
     {
-      id: 'table',
-      name: 'Table',
-      summary: 'A configurable component for displaying tabular data.',
+      id: "table",
+      name: "Table",
+      summary: "A configurable component for displaying tabular data.",
       exampleSpecs: {
-        prefix: 'cdk-table-',
+        prefix: "cdk-table-",
       },
     },
     {
-      id: 'test-harnesses',
-      name: 'Component Harnesses',
-      summary: 'Foundation for component test harnesses.',
+      id: "test-harnesses",
+      name: "Component Harnesses",
+      summary: "Foundation for component test harnesses.",
       exampleSpecs: {
-        prefix: 'cdk-test-harnesses-',
+        prefix: "cdk-test-harnesses-",
       },
-      overviewPath: 'cdk/testing/test-harnesses.html',
-      apiDocId: 'cdk-testing',
+      overviewPath: "cdk/testing/test-harnesses.html",
+      apiDocId: "cdk-testing",
       additionalApiDocs: [
         {
-          name: 'Testbed',
-          path: 'cdk-testing-testbed.html'
+          name: "Testbed",
+          path: "cdk-testing-testbed.html",
         },
         {
-          name: 'Protractor',
-          path: 'cdk-testing-protractor.html'
-        }
+          name: "Protractor",
+          path: "cdk-testing-protractor.html",
+        },
       ],
     },
     {
-      id: 'text-field',
-      name: 'Text field',
-      summary: 'Utilities for working with text input fields.',
+      id: "text-field",
+      name: "Text field",
+      summary: "Utilities for working with text input fields.",
       exampleSpecs: {
-        prefix: 'text-field-',
+        prefix: "text-field-",
       },
     },
     {
-      id: 'tree',
-      name: 'Tree',
-      summary: 'Presents hierarchical content as an expandable tree.',
+      id: "tree",
+      name: "Tree",
+      summary: "Presents hierarchical content as an expandable tree.",
       exampleSpecs: {
-        prefix: 'cdk-tree-',
+        prefix: "cdk-tree-",
       },
     },
-  ]
+  ],
   // TODO(jelbourn): re-add utilities and a11y as top-level categories once we can generate
   // their API docs with dgeni. Currently our setup doesn't generate API docs for constants
   // and standalone functions (much of the utilities) and we have no way of generating API
   // docs more granularly than directory-level (within a11y) (same for viewport).
 };
 
-const ALL_COMPONENTS = processDocs('material', DOCS[COMPONENTS]);
-const ALL_CDK = processDocs('cdk', DOCS[CDK]);
+const ALL_COMPONENTS = processDocs("material", DOCS[COMPONENTS]);
+const ALL_CDK = processDocs("cdk", DOCS[CDK]);
 const ALL_DOCS = [...ALL_COMPONENTS, ...ALL_CDK];
 
 @Injectable()
 export class DocumentationItems {
-
   getItems(section: string): DocItem[] {
     if (section === COMPONENTS) {
       return ALL_COMPONENTS;
@@ -588,18 +668,24 @@ export class DocumentationItems {
   }
 
   getItemById(id: string, section: string): DocItem | undefined {
-    const sectionLookup = section === 'cdk' ? 'cdk' : 'material';
-    return ALL_DOCS.find(doc => doc.id === id && doc.packageName === sectionLookup);
+    const sectionLookup = section === "cdk" ? "cdk" : "material";
+    return ALL_DOCS.find(
+      (doc) => doc.id === id && doc.packageName === sectionLookup
+    );
   }
 }
 
 function processDocs(packageName: string, docs: DocItem[]): DocItem[] {
   for (const doc of docs) {
     doc.packageName = packageName;
-    doc.examples = exampleNames.filter(key =>
-      key.match(RegExp(`^${doc.exampleSpecs.prefix}`)) &&
-      !doc.exampleSpecs.exclude?.some(excludeName => key.indexOf(excludeName) === 0));
+    doc.examples = exampleNames.filter(
+      (key) =>
+        key.match(RegExp(`^${doc.exampleSpecs.prefix}`)) &&
+        !doc.exampleSpecs.exclude?.some(
+          (excludeName) => key.indexOf(excludeName) === 0
+        )
+    );
   }
 
-  return docs.sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  return docs.sort((a, b) => a.name.localeCompare(b.name, "en"));
 }

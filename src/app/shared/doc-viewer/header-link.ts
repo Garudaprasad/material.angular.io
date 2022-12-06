@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 /**
  * Header link is a component that handles normalizing
@@ -15,16 +15,19 @@ import {Router} from '@angular/router';
  *    <a href="/guide#foo">Foo</a>
  */
 @Component({
-  selector: 'header-link',
+  selector: "header-link",
   template: `
-    <a aria-label="Link to this heading" class="docs-markdown-a"
-      [attr.aria-describedby]="example" [href]="_getFragmentUrl()">
+    <a
+      aria-label="Link to this heading"
+      class="docs-markdown-a"
+      [attr.aria-describedby]="example"
+      [href]="_getFragmentUrl()"
+    >
       <mat-icon>link</mat-icon>
     </a>
-  `
+  `,
 })
 export class HeaderLink {
-
   /**
    * Id of the anchor element. Note that is uses "example" because we instantiate the
    * header link components through the ComponentPortal.
@@ -35,11 +38,10 @@ export class HeaderLink {
   private _baseUrl: string;
 
   constructor(router: Router) {
-    this._baseUrl = router.url.split('#')[0];
+    this._baseUrl = router.url.split("#")[0];
   }
 
   _getFragmentUrl(): string {
     return `${this._baseUrl}#${this.example}`;
   }
-
 }

@@ -1,48 +1,83 @@
 <!-- TODO: figure out if the <nav> should go inside of a <header> element. -->
-<nav class="docs-navbar-header" aria-label="Top Toolbar"
-     [class.is-next-version]="isNextVersion">
-  <div class="skip-link-wrapper" [class.cdk-visually-hidden]="skipLinkHidden" *ngIf="skipLinkHref">
-    <a mat-raised-button [href]="skipLinkHref" (focus)="skipLinkHidden = false" (blur)="skipLinkHidden = true" color="accent">
-      Skip to main content
-    </a>
-  </div>
-  <a mat-button class="docs-button" routerLink="/" aria-label="Angular Material">
-    <img class="logo"
-         matButtonIcon
-         src="../../../assets/img/homepage/angular-white-transparent.svg"
-         alt="angular"
-         aria-hidden="true">
-    <span>Material</span>
+<nav class="docs-navbar-header" aria-label="Top Toolbar">
+  <a
+    mat-button
+    class="docs-button"
+    routerLink="/"
+    aria-label="NextGrade"
+    matTooltip="{{ 'app.navbar.tooltip.home' | translate }}"
+  >
+    <img
+      class="logo"
+      matButtonIcon
+      src="../../../assets/img/homepage/nextgen-white-transparent.png"
+      alt="angular"
+      aria-hidden="true"
+    />
+    <!-- <span translate>app.navbar.section.title.home</span> -->
   </a>
-  <a mat-button class="docs-navbar-hide-small docs-button"
-     *ngFor="let key of sectionKeys"
-     [routerLink]="key"
-     routerLinkActive="docs-navbar-header-item-selected">{{sections[key].name}}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="guides" routerLinkActive="docs-navbar-header-item-selected">Guides</a>
+  <a
+    mat-button
+    class="docs-navbar-hide-small docs-button"
+    *ngFor="let key of sectionKeys"
+    [routerLink]="key"
+    routerLinkActive="docs-navbar-header-item-selected"
+    >{{'app.navbar.section.title.' + sections[key].name | translate}}</a
+  >
+  <a
+    mat-button
+    class="docs-navbar-hide-small docs-button"
+    routerLink="guides"
+    routerLinkActive="docs-navbar-header-item-selected"
+    >Guides</a
+  >
   <div class="flex-spacer"></div>
-  <version-picker></version-picker>
+  <lang-picker></lang-picker>
+  <!-- <version-picker></version-picker> -->
   <theme-picker></theme-picker>
-  <a mat-button class="docs-button docs-navbar-hide-small" href="https://github.com/angular/components"
-     aria-label="GitHub Repository">
-    <img class="logo"
-         matButtonIcon
-         src="../../../assets/img/homepage/github-circle-white-transparent.svg"
-         alt="angular"
-         aria-hidden="true">
+  <button
+    mat-icon-button
+    matTooltip="{{ 'app.navbar.tooltip.acc-settings' | translate }}"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <!-- <a
+    mat-button
+    class="docs-button docs-navbar-hide-small"
+    href="https://github.com/angular/components"
+    aria-label="GitHub Repository"
+  >
+    <img
+      class="logo"
+      matButtonIcon
+      src="../../../assets/img/homepage/github-circle-white-transparent.svg"
+      alt="angular"
+      aria-hidden="true"
+    />
     GitHub
   </a>
-  <a mat-icon-button class="docs-button docs-navbar-show-small"
-     href="https://github.com/angular/components" aria-label="GitHub Repository">
-    <img class="logo docs-navbar--github-logo"
-         matButtonIcon
-         src="../../../assets/img/homepage/github-circle-white-transparent.svg"
-         alt="angular"
-         aria-hidden="true">
-  </a>
+  <a
+    mat-icon-button
+    class="docs-button docs-navbar-show-small"
+    href="https://github.com/angular/components"
+    aria-label="GitHub Repository"
+  >
+    <img
+      class="logo docs-navbar--github-logo"
+      matButtonIcon
+      src="../../../assets/img/homepage/github-circle-white-transparent.svg"
+      alt="angular"
+      aria-hidden="true"
+    />
+  </a> use for full button to icon button change-->
 </nav>
 <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
-  <a mat-button class="docs-navbar-link"
+  <a
+    mat-button
+    class="docs-navbar-link"
     *ngFor="let key of sectionKeys"
-    [routerLink]="key">{{sections[key].name}}</a>
+    [routerLink]="key"
+    >{{sections[key].name}}</a
+  >
   <a mat-button class="docs-navbar-link" routerLink="guides">Guides</a>
 </nav>

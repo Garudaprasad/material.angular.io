@@ -9,8 +9,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription } from "rxjs";
 import { map } from "rxjs/operators";
-import { TxManager } from "../tx-manager/tx-manager";
 import { LangStorage, LanguageObject } from "./lang-storage/lang-storage";
+import { TxManager } from "./tx-manager/tx-manager";
 
 @Component({
   selector: "lang-picker",
@@ -46,9 +46,9 @@ export class LangPickerComponent {
       );
     });
 
-    const themeName = this._storage.getStoredLanguage();
-    if (themeName) {
-      this.selectLang(themeName);
+    const prevLang = this._storage.getStoredLanguage();
+    if (prevLang) {
+      this.selectLang(prevLang);
     } else {
       this.languages.find((themes) => {
         if (themes.isDefault === true) {

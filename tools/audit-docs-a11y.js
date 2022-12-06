@@ -15,7 +15,7 @@
  *
  * `<origin>` is the origin (scheme + hostname + port) of an material.angular.io
  * deployment. It can be remote (e.g. `https://next.material.angular.io`) or local (e.g.
- * `http://localhost:4200`).
+ * `http://localhost:4300`).
  */
 
 // Imports

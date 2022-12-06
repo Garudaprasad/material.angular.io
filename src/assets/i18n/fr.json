@@ -1,23 +1,25 @@
 {
-	"app": {
-		"title": "NextGrade",
-		"toolbar": {
-			"language": {
-				"de": "German (DE)",
-				"en": "English (EN)",
-				"fr": "French (FR)"
-			},
-			"placeholder": {
-				"search": "Chercher"
-			},
-			"tooltip": {
-				"acc-settings": "Paramètres du compte",
-				"dark-mode": "Passer en mode sombre",
-				"home": "Aller à la page d'accueil",
-				"language": "Changer de langue",
-				"light-mode": "Passer en mode lumière",
-				"search": "Rechercher des applications/clés"
-			}
-		}
-	}
+  "app": {
+    "title": "NextGrade",
+    "descr": "Un outil multifonctionnel pour la gestion des données dans NextGen.",
+    "get-started": "Commencer",
+    "toolbar": {
+      "language": {
+        "de": "German (DE)",
+        "en": "English (EN)",
+        "fr": "French (FR)"
+      },
+      "placeholder": {
+        "search": "Chercher"
+      },
+      "tooltip": {
+        "acc-settings": "Paramètres du compte",
+        "dark-mode": "Passer en mode sombre",
+        "home": "Aller à la page d'accueil",
+        "language": "Changer de langue",
+        "light-mode": "Passer en mode lumière",
+        "search": "Rechercher des applications/clés"
+      }
+    }
+  }
 }

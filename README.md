@@ -43,7 +43,7 @@ documentation content and examples. They are generated from:
 
 ## Development Server
 
-1. Run `yarn start` for a dev server. Navigate to `http://localhost:4200/`.
+1. Run `yarn start` for a dev server. Navigate to `http://localhost:4300/`.
 
 ## Build
 

@@ -110,7 +110,7 @@
   },
   "emulators": {
     "hosting": {
-      "port": 4200
+      "port": 4300
     },
     "ui": {
       "enabled": true,
