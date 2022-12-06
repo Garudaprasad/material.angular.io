@@ -1,0 +1,35 @@
+{
+  "app": {
+    "title": "NextGrade",
+    "toolbar": {
+      "language": {
+        "de": "German (DE)",
+        "en": "English (EN)",
+        "fr": "French (FR)"
+      },
+      "placeholder": {
+        "search": "Search"
+      },
+      "tooltip": {
+        "acc-settings": "Account Settings",
+        "dark-mode": "Switch to Dark Mode",
+        "home": "Go to Home page",
+        "language": "Change Language",
+        "light-mode": "Switch to Light Mode",
+        "search": "Search Apps / Keys"
+      }
+    },
+    "app-drawer": {
+      "categories": {
+        "recent": "Recent",
+        "recommended": "Recommended"
+      },
+      "apps": {
+        "home": "Home",
+        "flat-file-reviewer": "Flatfile Reviewer",
+        "parity": "Parity",
+        "customer-dashboard": "Client Dashboard"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.docs-lang-picker-menu {
+  .mat-mdc-menu-item {
+    mat-icon.lang-icon {
+      margin-right: 0;
+      margin-left: auto;
+      padding-left: 8px;
+      order: 1;
+
+      svg {
+        vertical-align: middle;
+      }
+    }
+  }
+}

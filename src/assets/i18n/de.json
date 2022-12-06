@@ -1,0 +1,23 @@
+{
+	"app": {
+		"title": "NextGrade",
+		"toolbar": {
+			"language": {
+				"de": "German (DE)",
+				"en": "English (EN)",
+				"fr": "French (FR)"
+			},
+			"placeholder": {
+				"search": "Suche"
+			},
+			"tooltip": {
+				"acc-settings": "Kontoeinstellungen",
+				"dark-mode": "Wechseln Sie in den dunklen Modus",
+				"home": "Gehen Sie zur Startseite",
+				"language": "Sprache ändern",
+				"light-mode": "Wechseln Sie in den Lichtmodus",
+				"search": "Suchen Sie nach Apps / Schlüsseln"
+			}
+		}
+	}
+}

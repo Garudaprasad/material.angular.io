@@ -1,0 +1,27 @@
+<button
+  mat-icon-button
+  [mat-menu-trigger-for]="langMenu"
+  aria-label="Select a Language"
+  matTooltip="{{ 'app.toolbar.tooltip.search' | translate }}"
+>
+  <mat-icon>language</mat-icon>
+</button>
+
+<mat-menu #langMenu="matMenu" xPosition="before" class="docs-lang-picker-menu">
+  <button
+    mat-menu-item
+    *ngFor="let lang of languages"
+    (click)="selectLang(lang.name)"
+  >
+    <mat-icon
+      [class.docs-lang-selected-icon]="currentLang === lang"
+      [color]="currentLang === lang ? 'accent' : undefined"
+    >
+      {{
+        currentLang === lang ? "radio_button_checked" : "radio_button_unchecked"
+      }}
+    </mat-icon>
+    <span translate>app.toolbar.language.{{ lang.name }}</span>
+    <mat-icon class="lang-icon" [svgIcon]="lang.name"></mat-icon>
+  </button>
+</mat-menu>
