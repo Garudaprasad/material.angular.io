@@ -1,8 +1,9 @@
 import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {take} from 'rxjs/operators';
-import {ComponentSidenav, ComponentSidenavModule} from './component-sidenav';
 import {DocsAppTestingModule} from '../../testing/testing-module';
 import {MatSidenav} from '@angular/material/sidenav';
+import { ComponentSidenav } from './component-sidenav';
+import { ComponentSidenavModule } from './component-sidenav.module';
 
 describe('ComponentSidenav', () => {
   let fixture: ComponentFixture<ComponentSidenav>;
@@ -32,14 +33,5 @@ describe('ComponentSidenav', () => {
       component.isScreenSmall.pipe(take(1)).subscribe(isSmall => expect(isSmall).toBeTruthy());
       expect(component.sidenav.opened).toBe(false);
     });
-  });
-
-  it('should show a link for each item in doc items categories', () => {
-    const totalItems = component.docItems.getItems('categories').length;
-    const totalLinks = fixture
-      .nativeElement
-      .querySelectorAll('.docs-component-viewer-sidenav li a')
-      .length;
-    expect(totalLinks).toEqual(totalItems);
   });
 });

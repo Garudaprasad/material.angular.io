@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4300",
+    "host": "ng serve --port=4300 --host 10.129.10.68 --disable-host-check --ssl=true",
     "start:jit": "ng serve --aot=false",
     "start:prod": "ng serve --configuration production",
     "start:scenes": "ng serve scenes",

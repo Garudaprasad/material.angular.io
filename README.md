@@ -70,3 +70,5 @@ Before running the tests make sure you are serving the app via `yarn start`.
 # Production
 > yarn publish-prod
 ```
+
+My IP before VPN 192.168.43.123
