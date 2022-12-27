@@ -13,9 +13,12 @@ import { FooterModule } from "src/app/shared/footer/footer";
 import { NavigationFocusModule } from "src/app/shared/navigation-focus/navigation-focus";
 import { StackBlitzButtonModule } from "src/app/shared/stack-blitz";
 import { SvgViewerModule } from "src/app/shared/svg-viewer/svg-viewer";
-import { ComponentCategoryList, ComponentCategoryListModule } from "../component-category-list/component-category-list";
+import {
+  ComponentCategoryList,
+  ComponentCategoryListModule,
+} from "../component-category-list/component-category-list";
 import { ComponentHeaderModule } from "../component-page-header/component-page-header";
-import { ComponentViewer, ComponentOverview, ComponentApi, ComponentExamples, ComponentViewerModule } from "../component-viewer/component-viewer";
+import { ContentComponent } from "../content/content.component";
 import { ComponentNav } from "./component-nav";
 import { ComponentSidenav } from "./component-sidenav";
 
@@ -36,13 +39,7 @@ const routes: Routes = [
       },
       {
         path: ":id",
-        component: ComponentViewer,
-        children: [
-          { path: "", redirectTo: "overview", pathMatch: "full" },
-          { path: "overview", component: ComponentOverview, pathMatch: "full" },
-          { path: "api", component: ComponentApi, pathMatch: "full" },
-          { path: "examples", component: ComponentExamples, pathMatch: "full" },
-        ],
+        component: ContentComponent,
       },
       { path: "**", redirectTo: "/404" },
     ],
@@ -57,7 +54,6 @@ const routes: Routes = [
     CommonModule,
     ComponentCategoryListModule,
     ComponentHeaderModule,
-    ComponentViewerModule,
     DocViewerModule,
     FooterModule,
     FormsModule,

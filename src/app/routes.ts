@@ -11,6 +11,16 @@ export const MATERIAL_DOCS_ROUTES: Routes = [
   { path: "categories", redirectTo: "/components/categories" },
   { path: "cdk", pathMatch: "full", redirectTo: "/cdk/categories" },
   {
+    path: "conversions",
+    pathMatch: "full", 
+    redirectTo: "/conversions/categories",
+  },
+  {
+    path: "de_conversions",
+    pathMatch: "full",
+    redirectTo: "/de_conversions/categories",
+  },
+  {
     path: "components",
     pathMatch: "full",
     redirectTo: "/components/categories",

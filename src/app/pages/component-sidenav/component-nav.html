@@ -1,22 +1,7 @@
-<!-- <div class="docs-component-viewer-nav docs-component-viewer-nav__indvl">
-  <div
-    class="docs-component-viewer-nav-content"
-    *ngIf="(params | async)?.section as section"
-  >
-    <mat-nav-list>
-      <a
-        mat-list-item
-        *ngFor="let component of docItems.getItems(section)"
-        [routerLink]="'/' + section+ '/' + component.id"
-        routerLinkActive="docs-component-viewer-sidenav-item-selected"
-        [attr.aria-current]="currentItemId === component.id ? 'page': 'false'"
-      >
-        {{component.name}}
-      </a>
-    </mat-nav-list>
-  </div>
-</div> -->
-<div class="docs-component-viewer-nav docs-component-viewer-nav__grouped">
+<div
+  *ngIf="docItems.hasCategory((params | async)?.section)"
+  class="docs-component-viewer-nav docs-component-viewer-nav__grouped"
+>
   <div class="docs-component-viewer-nav-content">
     <div
       *ngFor="let category of docItems.getCategories((params | async)?.section); let last = last;"
@@ -55,5 +40,26 @@
       </mat-nav-list>
       <hr *ngIf="!last" />
     </div>
+  </div>
+</div>
+<div
+  *ngIf="!docItems.hasCategory((params | async)?.section)"
+  class="docs-component-viewer-nav docs-component-viewer-nav__indvl"
+>
+  <div
+    class="docs-component-viewer-nav-content"
+    *ngIf="(params | async)?.section as section"
+  >
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let component of docItems.getItems(section)"
+        [routerLink]="'/' + section+ '/' + component.id"
+        routerLinkActive="docs-component-viewer-sidenav-item-selected"
+        [attr.aria-current]="currentItemId === component.id ? 'page': 'false'"
+      >
+        {{component.name}}
+      </a>
+    </mat-nav-list>
   </div>
 </div>
