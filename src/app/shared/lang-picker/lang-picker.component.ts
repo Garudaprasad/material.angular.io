@@ -78,7 +78,6 @@ export class LangPickerComponent {
     }
 
     this.currentLang = theme;
-    console.log(this.currentLang);
 
     this._translate.setLang(theme.name);
 

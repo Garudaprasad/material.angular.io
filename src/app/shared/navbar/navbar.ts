@@ -4,8 +4,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { RouterModule } from "@angular/router";
 import { ThemePickerModule } from "../theme-picker";
-import { VersionPickerModule } from "../version-picker";
-import { SECTIONS } from "../documentation-items/documentation-items";
+import { SECTIONS } from "../nav-manager/nav-manager";
 import { ThemeStorage } from "../theme-picker/theme-storage/theme-storage";
 import { StyleManager } from "../style-manager";
 import { HttpClientModule } from "@angular/common/http";
@@ -15,6 +14,7 @@ import { LangPickerModule } from "../lang-picker";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { TranslateModule } from "@ngx-translate/core";
+import { NotificationModule } from "../notification";
 
 const SECTIONS_KEYS = Object.keys(SECTIONS);
 
@@ -25,7 +25,6 @@ const SECTIONS_KEYS = Object.keys(SECTIONS);
 })
 export class NavBar implements OnDestroy {
   private subscriptions = new Subscription();
-  isNextVersion = location.hostname.startsWith("next.material.angular.io");
   skipLinkHref: string | null | undefined;
   skipLinkHidden = true;
 
@@ -57,11 +56,11 @@ export class NavBar implements OnDestroy {
     MatMenuModule,
     RouterModule,
     ThemePickerModule,
-    VersionPickerModule,
     LangPickerModule,
     MatIconModule,
     MatTooltipModule,
     TranslateModule,
+    NotificationModule,
   ],
   exports: [NavBar],
   declarations: [NavBar],

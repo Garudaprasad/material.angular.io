@@ -1,0 +1,60 @@
+<div class="docs-component-viewer-nav docs-component-viewer-nav__grouped">
+  <div
+    *ngIf="!!navMgr.currentSection"
+    class="docs-component-viewer-nav-content"
+  >
+    <div *ngFor="let navItem of navItems; let last = last;">
+      <mat-nav-list
+        *ngIf="!navItem.items"
+        id="panel-{{navItem.id}}"
+        [attr.aria-label]="navItem.id"
+        class="docs-nav-list"
+      >
+        <a
+          mat-list-item
+          [routerLink]="'/' + navMgr.currentSection+ '/' + navItem.id"
+          routerLinkActive="docs-component-viewer-sidenav-item-selected"
+          [attr.aria-current]="currentItemId === navItem.id ? 'page': 'false'"
+          class="docs-nav-list-item"
+        >
+          {{ 'app.side-nav.name.' +navItem.id | translate}}
+        </a>
+      </mat-nav-list>
+      <div *ngIf="!!navItem.items">
+        <button
+          cdkAccordionItem
+          #panel="cdkAccordionItem"
+          (click)="panel.toggle()"
+          expanded="true"
+          class="docs-nav-content-btn"
+          [attr.aria-controls]="'panel-' + navItem.id"
+          [attr.aria-expanded]="panel.expanded"
+        >
+          {{ 'app.side-nav.name.' +navItem.id | translate}}
+          <mat-icon
+            >{{panel.expanded ? 'keyboard_arrow_up' :
+            'keyboard_arrow_down'}}</mat-icon
+          >
+        </button>
+        <mat-nav-list
+          [@bodyExpansion]="panel.expanded ? 'expanded' : 'collapsed'"
+          id="panel-{{navItem.id}}"
+          [attr.aria-label]="navItem.id"
+          class="docs-nav-list"
+        >
+          <a
+            mat-list-item
+            *ngFor="let subItems of navItem.items"
+            [routerLink]="'/' + navMgr.currentSection+ '/' + subItems.id"
+            routerLinkActive="docs-component-viewer-sidenav-item-selected"
+            [attr.aria-current]="currentItemId === subItems.id ? 'page': 'false'"
+            class="docs-nav-list-item"
+          >
+            {{ 'app.side-nav.name.' +subItems.id | translate}}
+          </a>
+        </mat-nav-list>
+      </div>
+      <hr *ngIf="!last" />
+    </div>
+  </div>
+</div>

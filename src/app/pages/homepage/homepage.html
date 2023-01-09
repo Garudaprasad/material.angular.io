@@ -120,57 +120,28 @@
 
   <div class="docs-homepage-featured-components docs-homepage-carousel-row">
     <div class="docs-homepage-header">
-      <h2>Featured components</h2>
+      <h2>Featured Conversions</h2>
 
-      <a class="docs-link" routerLink="/components">
-        View all components
+      <a class="docs-link" routerLink="/conversions">
+        View all Conversions
         <mat-icon>chevron_right</mat-icon>
       </a>
     </div>
     <app-carousel [aria-label]="'Featured components'">
       <a
-        *ngFor="let comp of getTopComponents()"
+        *ngFor="let comp of topConversions"
         carousel-item
         class="carousel-item docs-featured-components-carousel-item"
-        routerLink="/components/{{comp}}"
+        routerLink="/conversions/{{comp}}"
       >
         <div class="docs-homepage-img-container">
           <img
             alt=""
-            src="../../../assets/screenshots/{{comp}}.scene.png"
+            src="../../../assets/screenshots/{{comp}}.png"
             role="presentation"
           />
         </div>
-        {{(comp[0].toUpperCase() + comp.slice(1)).replace('-', ' ')}}
-      </a>
-    </app-carousel>
-  </div>
-
-  <mat-divider></mat-divider>
-
-  <div class="docs-homepage-guides docs-homepage-carousel-row">
-    <div class="docs-homepage-header">
-      <h2>Guides</h2>
-
-      <a class="docs-link" routerLink="/guides">
-        View all guides
-        <mat-icon>chevron_right</mat-icon>
-      </a>
-    </div>
-    <app-carousel [aria-label]="'Guides'">
-      <a
-        carousel-item
-        class="carousel-item docs-homepage-guides-carousel-item"
-        *ngFor="let guide of guideItems.getAllItems()"
-        routerLink="/guide/{{guide.id}}"
-      >
-        <mat-card class="docs-homepage-guides-card">
-          <mat-card-title>{{guide.name}}</mat-card-title>
-          <div class="docs-homepage-guides-card-divider"></div>
-          <mat-card-content class="docs-component-category-list-card-summary">
-            {{guide.overview}}
-          </mat-card-content>
-        </mat-card>
+        {{ 'app.side-nav.name.' +comp | translate}}
       </a>
     </app-carousel>
   </div>

@@ -6329,7 +6329,6 @@ firebase-tools@^11.0.1:
     tcp-port-used "^1.0.2"
     tmp "^0.2.1"
     triple-beam "^1.3.0"
-    universal-analytics "^0.5.3"
     unzipper "^0.10.10"
     update-notifier "^5.1.0"
     uuid "^8.3.2"

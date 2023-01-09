@@ -8,12 +8,12 @@ import {
   OnInit,
   NgZone,
   ChangeDetectorRef,
-} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
-import {fromEvent, Subscription} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
-import {NavigationFocusService} from '../navigation-focus/navigation-focus.service';
+} from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { ActivatedRoute, Router } from "@angular/router";
+import { fromEvent, Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+import { NavigationFocusService } from "../navigation-focus/navigation-focus.service";
 
 interface LinkSection {
   name: string;
@@ -38,47 +38,51 @@ interface Link {
 }
 
 @Component({
-  selector: 'table-of-contents',
-  styleUrls: ['./table-of-contents.scss'],
-  templateUrl: './table-of-contents.html'
+  selector: "table-of-contents",
+  styleUrls: ["./table-of-contents.scss"],
+  templateUrl: "./table-of-contents.html",
 })
 export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {
   @Input() container: string | undefined;
 
   _linkSections: LinkSection[] = [];
   _links: Link[] = [];
-  _rootUrl = this._router.url.split('#')[0];
+  _rootUrl = this._router.url.split("#")[0];
 
   private _scrollContainer: HTMLElement | Window | null = null;
-  private _urlFragment = '';
+  private _urlFragment = "";
   private subscriptions = new Subscription();
 
-  constructor(private _router: Router,
-              private _route: ActivatedRoute,
-              private _element: ElementRef,
-              private _navigationFocusService: NavigationFocusService,
-              @Inject(DOCUMENT) private _document: Document,
-              private _ngZone: NgZone,
-              private _changeDetectorRef: ChangeDetectorRef) {
-
-    this.subscriptions.add(this._navigationFocusService.navigationEndEvents
-      .subscribe(() => {
-        const rootUrl = _router.url.split('#')[0];
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _element: ElementRef,
+    private _navigationFocusService: NavigationFocusService,
+    @Inject(DOCUMENT) private _document: Document,
+    private _ngZone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.subscriptions.add(
+      this._navigationFocusService.navigationEndEvents.subscribe(() => {
+        const rootUrl = _router.url.split("#")[0];
         if (rootUrl !== this._rootUrl) {
           this._rootUrl = rootUrl;
         }
-      }));
+      })
+    );
 
-    this.subscriptions.add(this._route.fragment.subscribe(fragment => {
-      if (fragment != null) {
-        this._urlFragment = fragment;
+    this.subscriptions.add(
+      this._route.fragment.subscribe((fragment) => {
+        if (fragment != null) {
+          this._urlFragment = fragment;
 
-        const target = document.getElementById(this._urlFragment);
-        if (target) {
-          target.scrollIntoView();
+          const target = document.getElementById(this._urlFragment);
+          if (target) {
+            target.scrollIntoView();
+          }
         }
-      }
-    }));
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -86,14 +90,16 @@ export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {
     // to subscribe to its scroll event until next tick (when it does exist).
     this._ngZone.runOutsideAngular(() => {
       Promise.resolve().then(() => {
-        this._scrollContainer = this.container ?
-          this._document.querySelector(this.container) as HTMLElement :
-          window;
+        this._scrollContainer = this.container
+          ? (this._document.querySelector(this.container) as HTMLElement)
+          : window;
 
         if (this._scrollContainer) {
-          this.subscriptions.add(fromEvent(this._scrollContainer, 'scroll').pipe(
-              debounceTime(10))
-              .subscribe(() => this.onScroll()));
+          this.subscriptions.add(
+            fromEvent(this._scrollContainer, "scroll")
+              .pipe(debounceTime(10))
+              .subscribe(() => this.onScroll())
+          );
         }
       });
     });
@@ -116,27 +122,36 @@ export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {
     this._links = [];
   }
 
-  addHeaders(sectionName: string, docViewerContent: HTMLElement, sectionIndex = 0) {
-    const links = Array.from(docViewerContent.querySelectorAll('h3, h4'), header => {
-      // remove the 'link' icon name from the inner text
-      const name = (header as HTMLElement).innerText.trim().replace(/^link/, '');
-      const {top} = header.getBoundingClientRect();
-      return {
-        name,
-        type: header.tagName.toLowerCase(),
-        top: top,
-        id: header.id,
-        active: false
-      };
-    });
+  addHeaders(
+    sectionName: string,
+    docViewerContent: HTMLElement,
+    sectionIndex = 0
+  ) {
+    const links = Array.from(
+      docViewerContent.querySelectorAll("h3, h4"),
+      (header) => {
+        // remove the 'link' icon name from the inner text
+        const name = (header as HTMLElement).innerText
+          .trim()
+          .replace(/^link/, "");
+        const { top } = header.getBoundingClientRect();
+        return {
+          name,
+          type: header.tagName.toLowerCase(),
+          top: top,
+          id: header.id,
+          active: false,
+        };
+      }
+    );
 
-    this._linkSections[sectionIndex] = {name: sectionName, links};
+    this._linkSections[sectionIndex] = { name: sectionName, links };
     this._links.push(...links);
   }
 
   /** Gets the scroll offset of the scroll container */
   private getScrollOffset(): number | void {
-    const {top} = this._element.nativeElement.getBoundingClientRect();
+    const { top } = this._element.nativeElement.getBoundingClientRect();
     const container = this._scrollContainer;
 
     if (container instanceof HTMLElement) {
@@ -157,8 +172,9 @@ export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {
       // anchor without also being scrolled passed the next link.
       const currentLink = this._links[i];
       const nextLink = this._links[i + 1];
-      const isActive = scrollOffset >= currentLink.top &&
-                       (!nextLink || nextLink.top >= scrollOffset);
+      const isActive =
+        scrollOffset >= currentLink.top &&
+        (!nextLink || nextLink.top >= scrollOffset);
 
       if (isActive !== currentLink.active) {
         currentLink.active = isActive;

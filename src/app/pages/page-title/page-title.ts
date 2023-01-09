@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Title} from '@angular/platform-browser';
+import { Injectable } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 
 /**
  * Service responsible for setting the title that appears above the components and guide pages.
  */
-@Injectable({providedIn: 'root'})
-export class ComponentPageTitle {
-  _title = '';
-  _originalTitle = 'Angular Material UI component library';
+@Injectable({ providedIn: "root" })
+export class PageTitle {
+  _title = "";
+  _originalTitle = "Angular Material UI component library";
 
   get title(): string {
     return this._title;
@@ -15,7 +15,7 @@ export class ComponentPageTitle {
 
   set title(title: string) {
     this._title = title;
-    if (title !== '') {
+    if (title !== "") {
       title = `${title} | Angular Material`;
     } else {
       title = this._originalTitle;

@@ -1,1 +1,41 @@
-<p>notification works!</p>
+<button
+  mat-icon-button
+  [mat-menu-trigger-for]="notificationMenu"
+  [ngClass]="{
+    'bell-ring': !!NotificationsAvailable,
+    'notification-icon-btn database-icon-btn--sync':
+      !NotificationsAvailable && !!(progress$ | async)
+  }"
+  aria-label="Select a theme"
+  matTooltip="{{ 'app.top-nav.tooltip.notifications' | translate }}"
+>
+  <mat-icon
+    matBadgeSize="small"
+    matBadgeColor="accent"
+    [matBadge]="!!NotificationsAvailable ? notifications?.length : 'sync'"
+    [matBadgeHidden]="!NotificationsAvailable && !(progress$ | async)"
+    >notifications</mat-icon
+  >
+</button>
+
+<mat-menu
+  #notificationMenu="matMenu"
+  xPosition="before"
+  class="docs-theme-picker-menu"
+>
+  <button mat-menu-item *ngFor="let item of notifications">
+    <span class="std-label" mat-line>{{ item.title }}</span>
+    <span class="std-hint" mat-line>
+      {{ !!item.message ? item.message : "[No Message]" }}
+    </span>
+    <span class="std-hint" mat-line>{{ item.generatedDateTime | date }}</span>
+    <mat-icon
+      *ngIf="!!item.highPriority"
+      class="icon-color--high-priority material-symbols-outlined"
+      >priority_high
+    </mat-icon>
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined">cancel</mat-icon>
+    </button>
+  </button>
+</mat-menu>

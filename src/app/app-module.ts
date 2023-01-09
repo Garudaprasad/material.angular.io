@@ -1,17 +1,55 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ErrorHandler, NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { LocationStrategy, PathLocationStrategy } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { Routes } from "@angular/router";
+import { CanActivateSidenav } from "./pages/sidenav/sidenav-can-load-guard";
 
-import { MaterialDocsApp } from "./material-docs-app";
-import { MATERIAL_DOCS_ROUTES } from "./routes";
+import { App } from "./app";
 import { NavBarModule } from "./shared/navbar";
 import { CookiePopupModule } from "./shared/cookie-popup/cookie-popup-module";
-import { AnalyticsErrorReportHandler } from "./shared/analytics/error-report-handler";
 import { HttpLoaderFactory } from "./app.module.loader";
 import { HttpClient } from "@angular/common/http";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { SidenavResolver } from "./pages/sidenav/sidenav.resolver";
+import { NavManager } from "./shared/nav-manager/nav-manager";
+
+const MATERIAL_DOCS_ROUTES: Routes = [
+  {
+    path: "",
+    pathMatch: "full",
+    loadChildren: () =>
+      import("./pages/homepage").then((m) => m.HomepageModule),
+  },
+  {
+    path: "conversions",
+    pathMatch: "full",
+    redirectTo: "/conversions/categories",
+  },
+  {
+    path: "de_conversions",
+    pathMatch: "full",
+    redirectTo: "/de_conversions/categories",
+  },
+  {
+    path: "404",
+    loadChildren: () =>
+      import("./pages/not-found").then((m) => m.NotFoundModule),
+  },
+  {
+    path: ":section",
+    canActivate: [CanActivateSidenav],
+    resolve: {
+      navItems: SidenavResolver,
+    },
+    loadChildren: () =>
+      import("./pages/sidenav/sidenav.module").then(
+        (m) => m.ComponentSidenavModule
+      ),
+  },
+  { path: "**", redirectTo: "/404" },
+];
 
 const prefersReducedMotion =
   typeof matchMedia === "function"
@@ -38,11 +76,12 @@ const prefersReducedMotion =
     NavBarModule,
     CookiePopupModule,
   ],
-  declarations: [MaterialDocsApp],
+  declarations: [App],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy },
-    { provide: ErrorHandler, useClass: AnalyticsErrorReportHandler },
+    NavManager,
+    // { provide: ErrorHandler, useClass: AnalyticsErrorReportHandler },
   ],
-  bootstrap: [MaterialDocsApp],
+  bootstrap: [App],
 })
 export class AppModule {}
