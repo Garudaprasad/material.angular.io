@@ -3,6 +3,7 @@
 @use 'sass:map';
 @use './app/pages/category-list/category-list-theme';
 @use './app/pages/sidenav/sidenav-theme';
+// @use './app/pages/filter-view/filter-view-theme';
 @use './app/pages/homepage/homepage-theme';
 @use './app/pages/not-found/not-found-theme';
 @use './app/shared/carousel/carousel-theme';
@@ -24,11 +25,11 @@
   $foreground: map.get($theme, foreground);
   $next-theme: mat.define-palette(mat.$red-palette);
 
-  .docs-app-background {
+  .app-background {
     background: mat.get-color-from-palette($background, background);
   }
 
-  .docs-primary-header {
+  .primary-header {
     background: mat.get-color-from-palette($primary);
 
     h1 {
@@ -36,12 +37,12 @@
     }
   }
 
-  .docs-footer {
+  .footer {
     background: mat.get-color-from-palette($primary);
     color: mat.get-color-from-palette($primary, default-contrast);
   }
 
-  .docs-help-support {
+  .help-support {
     color: mat.get-color-from-palette($foreground, secondary-text);
 
     a {
@@ -56,6 +57,7 @@
   @include carousel-theme.theme($theme);
   @include category-list-theme.theme($theme);
   @include sidenav-theme.theme($theme);
+  // @include filter-view-theme.theme($theme);
   @include api-theme.theme($theme);
   @include markdown-theme.theme($theme);
   @include svg-theme.theme($theme);

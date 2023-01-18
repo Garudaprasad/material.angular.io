@@ -6,11 +6,11 @@ import {
   animate,
 } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
-import { DocItem, NavManager } from "src/app/shared/nav-manager/nav-manager";
+import { MenuItem, NavManager } from "src/app/shared/nav-manager/nav-manager";
 
 @Component({
-  selector: "app-nav",
-  templateUrl: "./nav.html",
+  selector: "nav-panel",
+  templateUrl: "./nav-panel.html",
   animations: [
     trigger("bodyExpansion", [
       state("collapsed", style({ height: "0px", display: "none" })),
@@ -22,15 +22,15 @@ import { DocItem, NavManager } from "src/app/shared/nav-manager/nav-manager";
     ]),
   ],
 })
-export class Nav implements OnInit {
+export class NavPanel implements OnInit {
   public currentItemId: string | undefined;
-  public navItems: Array<DocItem> = new Array<DocItem>();
+  public navItems: Array<MenuItem> = new Array<MenuItem>();
 
   constructor(public navMgr: NavManager) {}
 
   public ngOnInit(): void {
     this.navItems = this.navMgr.getNavItems();
-    NavManager.sectionChanged.subscribe((x) => {
+    NavManager.urlParamsChanged.subscribe((x) => {
       this.navItems = this.navMgr.getNavItems();
     });
   }

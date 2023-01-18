@@ -1,26 +1,26 @@
 import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ComponentHeaderModule, ComponentPageHeader} from './page-header';
+import {HeaderModule, PageHeader} from './page-header';
 import {DocsAppTestingModule} from '../../testing/testing-module';
 
 
 describe('ComponentPageHeader', () => {
-  let fixture: ComponentFixture<ComponentPageHeader>;
+  let fixture: ComponentFixture<PageHeader>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentHeaderModule, DocsAppTestingModule],
+      imports: [HeaderModule, DocsAppTestingModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComponentPageHeader);
+    fixture = TestBed.createComponent(PageHeader);
   });
 
   it('should return the title', () => {
     const component = fixture.componentInstance;
     const title = 'foobar';
     fixture.detectChanges();
-    component._componentPageTitle.title = title;
+    component._pageTitle.CurrentTitle = title;
     expect(component.getTitle()).toEqual(title);
   });
 

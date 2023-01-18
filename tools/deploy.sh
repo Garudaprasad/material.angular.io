@@ -45,8 +45,8 @@ if [[ "${cdk_prerelease}" ]]; then
 fi
 
 echo ""
-echo "NOTE: Make sure to refresh the docs-content to match the new version of docs."
-echo "      You can pull the docs-content for the new version by updating the"
+echo "NOTE: Make sure to refresh thecontent to match the new version of docs."
+echo "      You can pull thecontent for the new version by updating the"
 echo "      \"@angular/components-examples\" in the 'package.json' file."
 echo ""
 

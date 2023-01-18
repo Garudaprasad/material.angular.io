@@ -1,4 +1,4 @@
-import { Component, NgModule, OnDestroy } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
@@ -8,7 +8,6 @@ import { SECTIONS } from "../nav-manager/nav-manager";
 import { ThemeStorage } from "../theme-picker/theme-storage/theme-storage";
 import { StyleManager } from "../style-manager";
 import { HttpClientModule } from "@angular/common/http";
-import { Subscription } from "rxjs";
 import { NavigationFocusService } from "../navigation-focus/navigation-focus.service";
 import { LangPickerModule } from "../lang-picker";
 import { MatIconModule } from "@angular/material/icon";
@@ -23,8 +22,7 @@ const SECTIONS_KEYS = Object.keys(SECTIONS);
   templateUrl: "./navbar.html",
   styleUrls: ["./navbar.scss"],
 })
-export class NavBar implements OnDestroy {
-  private subscriptions = new Subscription();
+export class NavBar {
   skipLinkHref: string | null | undefined;
   skipLinkHidden = true;
 
@@ -41,10 +39,6 @@ export class NavBar implements OnDestroy {
 
   get sectionKeys() {
     return SECTIONS_KEYS;
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
   }
 }
 

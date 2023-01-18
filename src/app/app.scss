@@ -1,4 +1,4 @@
-@use '../styles/constants';
+@use "../styles/constants";
 
 app {
   display: flex;
@@ -14,11 +14,13 @@ app-navbar {
   z-index: 2;
 }
 
-app > app-sidenav {
+app > app-sidenav,
+app > app-filter-view {
   flex: 1;
 }
 
 app > router-outlet + .main-content,
+app > router-outlet + app-filter-view,
 app > router-outlet + app-sidenav {
   margin-top: 56px;
   overflow-y: auto;
@@ -27,6 +29,7 @@ app > router-outlet + app-sidenav {
 
 @media (max-width: constants.$extra-small-breakpoint-width) {
   app > router-outlet + .main-content,
+  app > router-outlet + app-filter-view,
   app > router-outlet + app-sidenav {
     margin-top: 92px;
     overflow-y: visible;

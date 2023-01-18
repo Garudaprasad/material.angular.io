@@ -1,16 +1,19 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
-import { PageTitle } from "src/app/pages/page-title/page-title";
+import { Injectable, OnDestroy } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { Subject, Subscription } from "rxjs";
+import { PageTitle } from "src/app/shared/page-title/page-title";
 
 const CONVERSIONS = "conversions";
 const DE_CONVERSIONS = "de_conversions";
+const CLIENTS_PROJS = "clients_projs";
 
-export interface DocSection {
+export interface MainMenu {
   name: string;
   summary: string;
 }
 
-export const SECTIONS: { [key: string]: DocSection } = {
+export const SECTIONS: { [key: string]: MainMenu } = {
   [CONVERSIONS]: {
     name: CONVERSIONS,
     summary: "",
@@ -19,15 +22,19 @@ export const SECTIONS: { [key: string]: DocSection } = {
     name: DE_CONVERSIONS,
     summary: "",
   },
+  [CLIENTS_PROJS]: {
+    name: CLIENTS_PROJS,
+    summary: "",
+  },
 };
 
-export interface DocItem {
+export interface MenuItem {
   /** Id of the doc item. Used in the URL for linking to the doc. */
   id: string;
-  items?: DocItem[];
+  items?: MenuItem[];
 }
 
-const NAV_ITEMS_BY_SECTIONS: { [key: string]: DocItem[] } = {
+const NAV_ITEMS_BY_SECTIONS: { [key: string]: MenuItem[] } = {
   [CONVERSIONS]: [
     {
       id: "advanced_directives",
@@ -258,95 +265,111 @@ const NAV_ITEMS_BY_SECTIONS: { [key: string]: DocItem[] } = {
 };
 
 @Injectable()
-export class NavManager {
-  public static sectionStorage = "url-section";
-  public static subSectionStorage = "url-sub-section";
+export class NavManager implements OnDestroy {
+  public static urlParamsChanged: Subject<string> = new Subject<string>();
 
-  public static sectionChanged: Subject<string> = new Subject<string>();
-  public static subSectionChanged: Subject<string> = new Subject<string>();
-  public static idChanged: Subject<string> = new Subject<string>();
+  private static _currentSection: string | undefined;
+  private static _currentSubSection: string | undefined;
+  private static _currentID: string | undefined;
+  private _subscriptions$: Subscription = new Subscription();
 
-  public currentSection: string | undefined;
-  public currentSubSection: string | undefined;
-  private static currentID: string | undefined;
-
-  private _navItems: Array<DocItem> = new Array<DocItem>();
-  private _catItems: Array<DocItem> = new Array<DocItem>();
-
-  public get getSection(): string | undefined {
-    let ret = localStorage.getItem(NavManager.sectionStorage);
-    if (ret === "undefined" || ret === "null" || !ret) return undefined;
-    else return ret;
+  public get Section(): string | undefined {
+    return NavManager._currentSection;
   }
 
-  public static set setSection(value: string) {
-    localStorage.setItem(this.sectionStorage, value);
-    this.sectionChanged.next(value);
+  public set Section(value: string | undefined) {
+    NavManager._currentSection = value;
+    NavManager._currentSubSection = undefined;
+    NavManager._currentID = undefined;
+    NavManager.urlParamsChanged.next(value);
   }
 
-  public get getSubSection(): string | undefined {
-    let ret = localStorage.getItem(NavManager.subSectionStorage);
-    if (ret === "undefined" || ret === "null" || !ret) return undefined;
-    else return ret;
+  public get SubSection(): string | undefined {
+    return NavManager._currentSubSection;
   }
 
-  public static set setID(value: string) {
-    localStorage.setItem(NavManager.subSectionStorage, value);
-    this.subSectionChanged.next(value);
+  public set SubSection(value: string | undefined) {
+    NavManager._currentSubSection = value;
+    NavManager._currentID = undefined;
+    NavManager.urlParamsChanged.next(value);
   }
 
-  public get getID(): string | undefined {
-    let ret = localStorage.getItem(NavManager.subSectionStorage);
-    if (ret === "undefined" || ret === "null" || !ret) return undefined;
-    else return ret;
-  }
-
-  public static set setSubSection(value: string) {
-    NavManager.currentID = value;
-    this.subSectionChanged.next(value);
-  }
-
-  constructor(private _componentPageTitle: PageTitle) {}
-
-  public getNavItems(): Array<DocItem> {
-    if (this.currentSection === this.getSection) return this._navItems;
-
-    this.currentSection = this.getSection;
-
-    if (!!this.currentSection) {
-      this._navItems = NAV_ITEMS_BY_SECTIONS[this.currentSection];
+  public set ID(value: string | undefined) {
+    if (this.checkSubsection()) {
+      this.SubSection = value;
     } else {
-      this._navItems = [];
+      NavManager._currentID = value;
+      NavManager.urlParamsChanged.next(value);
     }
-
-    return this._navItems;
   }
 
-  public getCategoryItems(): DocItem[] {
-    if (!this.getSubSection && !!this._navItems) {
-      this.currentSubSection = undefined;
-      this._componentPageTitle.title = this.currentSection ?? "";
-      return this._navItems;
-    }
+  constructor(
+    private _pageTitle: PageTitle,
+    private _router: Router,
+    private _tx: TranslateService
+  ) {
+    console.log("qweqweqwe");
+    this._subscriptions$.add(
+      NavManager.urlParamsChanged.subscribe((x) => {
+        this.updateTitle();
+      })
+    );
 
-    if (
-      !!this.currentSubSection &&
-      !!this.getSubSection &&
-      this.currentSubSection === this.getSubSection
-    ) {
-      return this._catItems;
-    }
+    this._subscriptions$.add(
+      _router.events.subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          const section = this.checkSection();
+          if (!!section) {
+            this.Section = section;
+          }
+        }
+      })
+    );
+  }
 
-    this.currentSubSection = this.getSubSection;
+  public ngOnDestroy(): void {
+    this._subscriptions$.unsubscribe();
+    this.Section = undefined;
+  }
 
-    if (!!this.currentSubSection && !!this._navItems) {
-      this._componentPageTitle.title = this.currentSubSection ?? "";
-      this._catItems =
-        this._navItems.find((x) => x.id === this.currentSubSection)?.items ??
-        [];
-    }
+  private checkSubsection() {
+    const urlTree = this._router.url.split("/");
+    return urlTree[urlTree.length - 2] === "categories";
+  }
 
-    return this._catItems;
+  private checkSection() {
+    const urlTree = this._router.url.split("/");
+
+    return urlTree[urlTree.length - 1] === "categories" && urlTree.length > 1
+      ? urlTree[urlTree.length - 2]
+      : null;
+  }
+
+  private updateTitle() {
+    const key =
+      NavManager._currentID ??
+      NavManager._currentSubSection ??
+      NavManager._currentSection ??
+      "no-title";
+    this._pageTitle.CurrentTitle =
+      this._tx.instant("app.top-nav.menu.name." + key) !==
+      "app.top-nav.menu.name." + key
+        ? this._tx.instant("app.top-nav.menu.name." + key)
+        : this._tx.instant("app.side-nav.name." + key);
+  }
+
+  public getNavItems(): Array<MenuItem> {
+    return !!NavManager._currentSection &&
+      !!NAV_ITEMS_BY_SECTIONS[NavManager._currentSection]
+      ? NAV_ITEMS_BY_SECTIONS[NavManager._currentSection]
+      : [];
+  }
+
+  public getCategoryItems(): MenuItem[] {
+    return !!NavManager._currentSubSection
+      ? this.getNavItems().find((x) => x.id === NavManager._currentSubSection)
+          ?.items ?? []
+      : this.getNavItems();
   }
 
   public getTopConversions(): string[] {
@@ -363,7 +386,7 @@ export class NavManager {
     return Array.from<string>(letters);
   }
 
-  getItemById(id: string, section: string): DocItem | undefined {
+  getItemById(id: string, section: string): MenuItem | undefined {
     return NAV_ITEMS_BY_SECTIONS[section].find((doc) => doc.id === id);
   }
 }

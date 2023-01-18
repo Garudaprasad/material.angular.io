@@ -6,22 +6,22 @@ import { Title } from "@angular/platform-browser";
  */
 @Injectable({ providedIn: "root" })
 export class PageTitle {
-  _title = "";
-  _originalTitle = "Angular Material UI component library";
+  private _title = "";
+  private _originalTitle = "NextGrade";
 
-  get title(): string {
+  public get CurrentTitle(): string {
     return this._title;
   }
 
-  set title(title: string) {
+  public set CurrentTitle(title: string) {
     this._title = title;
     if (title !== "") {
-      title = `${title} | Angular Material`;
+      title = `${this.CurrentTitle} | NextGrade`;
     } else {
       title = this._originalTitle;
     }
-    this.bodyTitle.setTitle(title);
+    this._bodyTitle.setTitle(title);
   }
 
-  constructor(private bodyTitle: Title) {}
+  constructor(private _bodyTitle: Title) {}
 }

@@ -10,7 +10,7 @@
 <mat-menu
   #themeMenu="matMenu"
   xPosition="before"
-  class="docs-theme-picker-menu"
+  class="theme-picker-menu"
 >
   <button
     mat-menu-item
@@ -18,7 +18,7 @@
     (click)="selectTheme(theme.name)"
   >
     <mat-icon
-      [class.docs-theme-selected-icon]="currentTheme === theme"
+      [class.theme-selected-icon]="currentTheme === theme"
       [color]="currentTheme === theme ? 'accent' : undefined"
     >
       {{currentTheme === theme ? 'radio_button_checked' :

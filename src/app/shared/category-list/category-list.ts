@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, NgModule, OnInit } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
-import { NavigationEnd, Router, RouterModule } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
-import { DocItem, NavManager } from "../../shared/nav-manager/nav-manager";
-import { NavigationFocusModule } from "../../shared/navigation-focus/navigation-focus";
-import { SvgViewerModule } from "../../shared/svg-viewer/svg-viewer";
+import { MenuItem, NavManager } from "../nav-manager/nav-manager";
+import { NavigationFocusModule } from "../navigation-focus/navigation-focus";
+import { SvgViewerModule } from "../svg-viewer/svg-viewer";
 
 @Component({
   selector: "app-category-list",
@@ -13,13 +13,16 @@ import { SvgViewerModule } from "../../shared/svg-viewer/svg-viewer";
   styleUrls: ["./category-list.scss"],
 })
 export class CategoryList implements OnInit {
-  public catItems: Array<DocItem> = new Array<DocItem>();
+  public catItems: Array<any> = new Array<any>();
 
   constructor(public navMgr: NavManager) {}
 
   public ngOnInit(): void {
     this.catItems = this.navMgr.getCategoryItems();
-    NavManager.subSectionChanged.subscribe((x) => {
+    NavManager.urlParamsChanged.subscribe((x) => {
+      this.catItems = this.navMgr.getCategoryItems();
+    });
+    NavManager.urlParamsChanged.subscribe((x) => {
       this.catItems = this.navMgr.getCategoryItems();
     });
   }
@@ -38,4 +41,4 @@ export class CategoryList implements OnInit {
   declarations: [CategoryList],
   providers: [NavManager],
 })
-export class ComponentCategoryListModule {}
+export class CategoryListModule {}

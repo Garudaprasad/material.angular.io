@@ -11,14 +11,14 @@
   app-navbar {
     color: mat.get-color-from-palette($primary, default-contrast);
 
-    .docs-navbar, .docs-navbar-header {
+    .navbar, .navbar-header {
       background: mat.get-color-from-palette($primary);
 
       & a:hover, & a:focus {
         background: rgba(0, 0, 0, 0.4);
       }
 
-      .docs-navbar-header-item-selected {
+      .navbar-header-item-selected {
         background: rgba(0, 0, 0, 0.2);
       }
     }

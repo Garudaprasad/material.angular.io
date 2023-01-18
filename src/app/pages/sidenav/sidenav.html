@@ -1,22 +1,22 @@
-<mat-sidenav-container class="docs-component-viewer-sidenav-container">
+<mat-sidenav-container class="sidenav-container">
   <!-- If on small screen, menu resides in drawer -->
   <mat-sidenav
     #sidenav
-    class="docs-component-viewer-sidenav"
+    class="sidenav"
     *ngIf="(isScreenSmall | async)"
     [opened]="(isScreenSmall | async) === false"
     [mode]="(isScreenSmall | async) ? 'over' : 'side'"
     [fixedInViewport]="(isScreenSmall | async)"
     [fixedTopGap]="(isExtraScreenSmall | async) ? 92 : 56"
   >
-    <app-nav></app-nav>
+    <nav-panel></nav-panel>
   </mat-sidenav>
-  <div class="docs-sidenav-content">
+  <div class="sidenav-content">
     <page-header (toggleSidenav)="toggleSidenav(sidenav)"></page-header>
-    <div class="docs-sidenav-inner-content">
-      <main class="docs-sidenav-body-content">
+    <div class="sidenav-inner-content">
+      <main class="sidenav-body-content">
         <!-- If on large screen, menu resides to left of content -->
-        <app-nav *ngIf="(isScreenSmall | async) === false"> </app-nav>
+        <nav-panel *ngIf="(isScreenSmall | async) === false"> </nav-panel>
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>

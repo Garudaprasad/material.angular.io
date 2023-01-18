@@ -11,16 +11,13 @@ import { NavManager } from "src/app/shared/nav-manager/nav-manager";
 import { FooterModule } from "src/app/shared/footer/footer";
 import { NavigationFocusModule } from "src/app/shared/navigation-focus/navigation-focus";
 import { SvgViewerModule } from "src/app/shared/svg-viewer/svg-viewer";
-import {
-  CategoryList,
-  ComponentCategoryListModule,
-} from "../category-list/category-list";
-import { ComponentHeaderModule } from "../page-header/page-header";
+import { CategoryList } from "../../shared/category-list/category-list";
 import { ContentComponent } from "../content/content";
-import { Nav } from "./nav";
 import { Sidenav } from "./sidenav";
 import { TranslateModule } from "@ngx-translate/core";
 import { SidenavResolver } from "./sidenav.resolver";
+import { NavPanel } from "./nav-panel/nav-panel";
+import { HeaderModule } from "src/app/shared/page-header/page-header";
 
 const routes: Routes = [
   {
@@ -58,8 +55,7 @@ const routes: Routes = [
     MatListModule,
     RouterModule,
     CommonModule,
-    ComponentCategoryListModule,
-    ComponentHeaderModule,
+    HeaderModule,
     FooterModule,
     FormsModule,
     HttpClientModule,
@@ -71,7 +67,7 @@ const routes: Routes = [
     TranslateModule,
   ],
   exports: [Sidenav],
-  declarations: [Sidenav, Nav],
+  declarations: [Sidenav, NavPanel],
   providers: [NavManager, SidenavResolver],
 })
-export class ComponentSidenavModule {}
+export class SidenavModule {}

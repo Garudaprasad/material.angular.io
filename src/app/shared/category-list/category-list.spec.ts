@@ -2,7 +2,7 @@ import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ActivatedRoute, Params} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 import {DocsAppTestingModule} from '../../testing/testing-module';
-import {CategoryList, ComponentCategoryListModule} from './category-list';
+import {CategoryList, CategoryListModule} from './category-list';
 
 describe('ComponentCategoryList', () => {
   let fixture: ComponentFixture<CategoryList>;
@@ -17,7 +17,7 @@ describe('ComponentCategoryList', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [ComponentCategoryListModule, DocsAppTestingModule],
+      imports: [CategoryListModule, DocsAppTestingModule],
       providers: [
         {provide: ActivatedRoute, useValue: fakeActivatedRoute}
       ]
@@ -38,7 +38,7 @@ describe('ComponentCategoryList', () => {
     const component = fixture.componentInstance;
     const components = component.navMgr.getItems('components');
     const cards = fixture
-        .nativeElement.querySelectorAll('.docs-category-list-card');
+        .nativeElement.querySelectorAll('.category-list-card');
     expect(cards.length).toEqual(components.length);
   });
 });

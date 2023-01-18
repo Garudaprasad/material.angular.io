@@ -7,6 +7,6 @@ describe('ComponentPageTitle', () => {
 
   it('should initialize title to empty string', () => {
     expect(service._title).toEqual('');
-    expect(service.title).toEqual('');
+    expect(service.CurrentTitle).toEqual('');
   });
 });

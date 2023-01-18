@@ -1,0 +1,36 @@
+<div
+  class="category-list-summary"
+  id="category-summary"
+  focusOnNavigation
+></div>
+<div class="category-list">
+  <a
+    *ngFor="let navItem of catItems"
+    class="category-list-item"
+    routerLink="{{!!navItem.items ? ('/' + navMgr.Section + '/categories/' + navItem.id) : ('/' + navMgr.Section + '/' + navItem.id)}}"
+  >
+    <div class="category-list-card">
+      <img
+        class="category-list-card-image-wrapper"
+        src="{{!!navItem.icon ? 
+          ('../../../assets/clients/'+navItem.icon+'.png') 
+        : ('../../../assets/screenshots/'+navItem.id+'.png')
+      }}"
+        loading="lazy"
+        alt=""
+        role="presentation"
+        aria-hidden="true"
+      />
+      <div class="category-list-card-title">
+        {{ navItem.name ?? ('app.side-nav.name.' +navItem.id | translate)}}
+      </div>
+      <div class="category-list-card-summary">
+        {{ navItem.location ?? ('app.side-nav.summary.' +navItem.id |
+        translate)}}
+      </div>
+      <div *ngIf="!!navItem.sap" class="category-list-card-summary">
+        {{ navItem.sap }}
+      </div>
+    </div>
+  </a>
+</div>

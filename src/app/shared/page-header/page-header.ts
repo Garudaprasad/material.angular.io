@@ -10,23 +10,13 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
   templateUrl: "./page-header.html",
   styleUrls: ["./page-header.scss"],
 })
-export class ComponentPageHeader {
-  constructor(
-    private _componentPageTitle: PageTitle,
-    private _tx: TranslateService
-  ) {}
+export class PageHeader {
+  constructor(private _pageTitle: PageTitle, private _tx: TranslateService) {}
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
   getTitle(): string {
-    return this._tx.instant(
-      "app.top-nav.menu.name." + this._componentPageTitle.title
-    ) !==
-      "app.top-nav.menu.name." + this._componentPageTitle.title
-      ? this._tx.instant(
-          "app.top-nav.menu.name." + this._componentPageTitle.title
-        )
-      : this._tx.instant("app.side-nav.name." + this._componentPageTitle.title);
+    return this._pageTitle.CurrentTitle ?? "asdasdasd";
   }
 }
 
@@ -37,7 +27,7 @@ export class ComponentPageHeader {
     NavigationFocusModule,
     TranslateModule,
   ],
-  exports: [ComponentPageHeader],
-  declarations: [ComponentPageHeader],
+  exports: [PageHeader],
+  declarations: [PageHeader],
 })
-export class ComponentHeaderModule {}
+export class HeaderModule {}

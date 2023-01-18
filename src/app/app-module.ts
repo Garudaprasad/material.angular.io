@@ -37,6 +37,13 @@ const MATERIAL_DOCS_ROUTES: Routes = [
     loadChildren: () =>
       import("./pages/not-found").then((m) => m.NotFoundModule),
   },
+  // {
+  //   path: "clients_projs",
+  //   loadChildren: () =>
+  //     import("./pages/filter-view/filter-view.module").then(
+  //       (m) => m.FilterViewModule
+  //     ),
+  // },
   {
     path: ":section",
     canActivate: [CanActivateSidenav],
@@ -44,9 +51,7 @@ const MATERIAL_DOCS_ROUTES: Routes = [
       navItems: SidenavResolver,
     },
     loadChildren: () =>
-      import("./pages/sidenav/sidenav.module").then(
-        (m) => m.ComponentSidenavModule
-      ),
+      import("./pages/sidenav/sidenav.module").then((m) => m.SidenavModule),
   },
   { path: "**", redirectTo: "/404" },
 ];

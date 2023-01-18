@@ -28,10 +28,10 @@ describe('HorizontalCarousel', () => {
   }));
 
   it('should not show prev nav arrow when instantiated', () => {
-    const navPrevious = fixture.nativeElement.querySelector('.docs-carousel-nav-prev');
+    const navPrevious = fixture.nativeElement.querySelector('.carousel-nav-prev');
     expect(navPrevious).toBeNull();
 
-    const navNext = fixture.nativeElement.querySelector('.docs-carousel-nav-next');
+    const navNext = fixture.nativeElement.querySelector('.carousel-nav-next');
     expect(navNext).toBeDefined();
   });
 
@@ -39,7 +39,7 @@ describe('HorizontalCarousel', () => {
     component.next();
     fixture.detectChanges();
 
-    const navPrevious = fixture.nativeElement.querySelector('.docs-carousel-nav-prev');
+    const navPrevious = fixture.nativeElement.querySelector('.carousel-nav-prev');
     expect(navPrevious).toBeDefined();
   });
 
@@ -48,7 +48,7 @@ describe('HorizontalCarousel', () => {
     component.next();
     fixture.detectChanges();
 
-    const navPrevious = fixture.nativeElement.querySelector('.docs-carousel-nav-next');
+    const navPrevious = fixture.nativeElement.querySelector('.carousel-nav-next');
     expect(navPrevious).toBeNull();
   });
 });
@@ -58,11 +58,11 @@ describe('HorizontalCarousel', () => {
   template:
       `
     <app-carousel>
-      <div carousel-item class="docs-carousel-item-container"
+      <div carousel-item class="carousel-item-container"
            *ngFor="let i of [].constructor(numberOfItems) "></div>
     </app-carousel>`,
   styles: [`
-    .docs-carousel-item-container {
+    .carousel-item-container {
       display: flex;
       width: 250px;
     }

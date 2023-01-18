@@ -14,6 +14,7 @@
           "home": "Home",
           "conversions": "Conversions",
           "de_conversions": "De-Conversions",
+          "clients_projs": "Clients/Projects",
           "guide": "Guide"
         }
       },
@@ -27,6 +28,7 @@
     },
     "side-nav": {
       "name": {
+        "no-title": "",
         "advanced_directives": "Advanced Directives",
         "allergies": "Allergies",
         "appt_recalls": "Appointment Recalls",
@@ -65,8 +67,8 @@
         "insurance_card": "Insurance Card",
         "labs": "Labs & Radiology",
         "medications": "Medications",
-        "midmark": "Mdimark",
-        "problems": "Problems",
+        "midmark": "Mid-Mark",
+        "problems": "Problems & Diagnosis",
         "problems_chronics": "Problems Chronics",
         "problems_snomed": "Problems SNOMED",
         "procedures": "Procedures",

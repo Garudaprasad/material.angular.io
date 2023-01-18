@@ -6,20 +6,20 @@
   $background: map.get($theme, background);
   $foreground: map.get($theme, foreground);
 
-  .docs-api table,
-  .docs-markdown > table {
+  .api table,
+  .markdown > table {
     color: mat.get-color-from-palette($foreground, text);
   }
 
-  .docs-api th,
-  .docs-markdown > table th {
+  .api th,
+  .markdown > table th {
     background: mat.get-color-from-palette($background, app-bar);
   }
 
-  .docs-api td,
-  .docs-api thead,
-  .docs-markdown > table td,
-  .docs-markdown > table thead {
+  .api td,
+  .api thead,
+  .markdown > table td,
+  .markdown > table thead {
     border: 1px solid mat.get-color-from-palette($foreground, divider);
   }
 }

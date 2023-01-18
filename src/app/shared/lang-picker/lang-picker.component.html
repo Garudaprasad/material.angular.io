@@ -12,14 +12,14 @@
   >
 </button>
 
-<mat-menu #langMenu="matMenu" xPosition="before" class="docs-lang-picker-menu">
+<mat-menu #langMenu="matMenu" xPosition="before" class="lang-picker-menu">
   <button
     mat-menu-item
     *ngFor="let lang of languages"
     (click)="selectLang(lang.name)"
   >
     <mat-icon
-      [class.docs-lang-selected-icon]="currentLang === lang"
+      [class.lang-selected-icon]="currentLang === lang"
       [color]="currentLang === lang ? 'accent' : undefined"
     >
       {{

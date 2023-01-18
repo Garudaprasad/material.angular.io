@@ -3,7 +3,7 @@ app-carousel {
   position: relative;
 }
 
-.docs-carousel-content {
+.carousel-content {
   display: flex;
   flex-direction: row;
   outline: none;
@@ -14,7 +14,7 @@ app-carousel {
   }
 }
 
-.docs-carousel-content-wrapper {
+.carousel-content-wrapper {
   overflow: hidden;
 }
 
@@ -22,16 +22,16 @@ app-carousel {
   flex-shrink: 0;
 }
 
-button.docs-carousel-nav {
+button.carousel-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.docs-carousel-nav-prev {
+.carousel-nav-prev {
   left: -50px;
 }
 
-.docs-carousel-nav-next {
+.carousel-nav-next {
   right: -50px;
 }

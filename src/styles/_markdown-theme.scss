@@ -11,7 +11,7 @@
   $is-dark-theme: map.get($theme, is-dark);
   $exportBackgroundOpacity: if($is-dark-theme, 0.06, 0.03);
 
-  .docs-markdown {
+  .markdown {
     a:not(.mat-mdc-button-base) {
       color: mat.get-color-from-palette($primary, if($is-dark-theme, 200, default));
     }

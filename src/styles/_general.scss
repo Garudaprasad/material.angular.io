@@ -9,8 +9,8 @@ body {
   margin: 0;
 }
 
-.docs-button[md-button],
-.docs-button[md-raised-button] {
+.button[md-button],
+.button[md-raised-button] {
   text-transform: uppercase;
 }
 
@@ -19,7 +19,7 @@ h2 {
   font-weight: 400;
 }
 
-.docs-primary-header {
+.primary-header {
   padding-left: 20px;
 
   h1 {
@@ -32,15 +32,15 @@ h2 {
 
 // These styles are for controlling SVGs without using the ::ng-deep selector
 
-.docs-category-list-card-image svg {
+.category-list-card-image svg {
   width: 100%;
 }
 
-.docs-footer-angular-logo svg {
+.footer-angular-logo svg {
   height: 50px;
 }
 
-.docs-angular-logo svg {
+.angular-logo svg {
   height: 26px;
   margin: 0 4px 3px 0;
   vertical-align: middle;

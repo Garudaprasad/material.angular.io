@@ -3,7 +3,7 @@ import {take} from 'rxjs/operators';
 import {DocsAppTestingModule} from '../../testing/testing-module';
 import {MatSidenav} from '@angular/material/sidenav';
 import { Sidenav } from './sidenav';
-import { ComponentSidenavModule } from './sidenav.module';
+import { SidenavModule } from './sidenav.module';
 
 describe('ComponentSidenav', () => {
   let fixture: ComponentFixture<Sidenav>;
@@ -11,7 +11,7 @@ describe('ComponentSidenav', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentSidenavModule, DocsAppTestingModule],
+      imports: [SidenavModule, DocsAppTestingModule],
     }).compileComponents();
   }));
 

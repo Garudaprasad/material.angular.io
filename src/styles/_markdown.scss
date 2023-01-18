@@ -1,6 +1,6 @@
 // Styles for overview and guide docs generated via `marked` from the material2 repo.
 
-.docs-markdown {
+.markdown {
   max-width: 100%;
 
   h1 {
@@ -54,7 +54,7 @@
   }
 }
 
-.docs-header-link {
+.header-link {
   // padding to prevent the site header from headbutting the headers when navigating using fragment links
   padding-top: 20px;
   margin-top: -20px;

@@ -3,7 +3,7 @@
   *ngIf="this.showPrevArrow"
   aria-hidden="true"
   tabindex="-1"
-  class="docs-carousel-nav docs-carousel-nav-prev"
+  class="carousel-nav carousel-nav-prev"
   mat-mini-fab
   aria-label="previous"
 >
@@ -13,10 +13,10 @@
 <div
   #contentWrapper
   (keyup)="onKeydown($event)"
-  class="docs-carousel-content-wrapper"
+  class="carousel-content-wrapper"
   role="region"
 >
-  <div class="docs-carousel-content" role="list" tabindex="0" #list>
+  <div class="carousel-content" role="list" tabindex="0" #list>
     <ng-content></ng-content>
   </div>
 </div>
@@ -26,7 +26,7 @@
   *ngIf="this.showNextArrow"
   aria-hidden="true"
   tabindex="-1"
-  class="docs-carousel-nav docs-carousel-nav-next"
+  class="carousel-nav carousel-nav-next"
   mat-mini-fab
   aria-label="next"
 >

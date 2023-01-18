@@ -1,8 +1,8 @@
 <!-- TODO: figure out if the <nav> should go inside of a <header> element. -->
-<nav class="docs-navbar-header" aria-label="Top Toolbar">
+<nav class="navbar-header" aria-label="Top Toolbar">
   <a
     mat-button
-    class="docs-button"
+    class="button"
     routerLink="/"
     aria-label="NextGrade"
     matTooltip="{{ 'app.top-nav.tooltip.home' | translate }}"
@@ -18,10 +18,10 @@
   </a>
   <a
     mat-button
-    class="docs-navbar-hide-small docs-button"
+    class="navbar-hide-smallbutton"
     *ngFor="let key of sectionKeys"
     [routerLink]="key"
-    routerLinkActive="docs-navbar-header-item-selected"
+    routerLinkActive="navbar-header-item-selected"
     >{{'app.top-nav.menu.name.' + sections[key].name | translate}}</a
   >
   <div class="flex-spacer"></div>
@@ -36,7 +36,7 @@
   </button>
   <!-- <a
     mat-button
-    class="docs-button docs-navbar-hide-small"
+    class="buttonnavbar-hide-small"
     href="https://github.com/angular/components"
     aria-label="GitHub Repository"
   >
@@ -51,12 +51,12 @@
   </a>
   <a
     mat-icon-button
-    class="docs-button docs-navbar-show-small"
+    class="buttonnavbar-show-small"
     href="https://github.com/angular/components"
     aria-label="GitHub Repository"
   >
     <img
-      class="logo docs-navbar--github-logo"
+      class="logonavbar--github-logo"
       matButtonIcon
       src="../../../assets/img/homepage/github-circle-white-transparent.svg"
       alt="angular"
@@ -64,13 +64,13 @@
     />
   </a> use for full button to icon button change-->
 </nav>
-<nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
+<nav class="navbar-show-small" aria-label="Section Nav Bar">
   <a
     mat-button
-    class="docs-navbar-link"
+    class="navbar-link"
     *ngFor="let key of sectionKeys"
     [routerLink]="key"
     >{{'app.top-nav.menu.name.' + sections[key].name | translate}}</a
   >
-  <a mat-button class="docs-navbar-link" routerLink="guides">Guides</a>
+  <a mat-button class="navbar-link" routerLink="guides">Guides</a>
 </nav>
